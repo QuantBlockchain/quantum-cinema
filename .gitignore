@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+cdk.out/
+.next/
+out/
+dist/
+build/
+
+# Environment files
+.env
+.env.*
+.env.local
+.env.*.local
+
+# CDK context
+cdk.context.json
+
+# TypeScript
+*.js
+*.d.ts
+*.js.map
+!bin/app.ts
+!jest.config.js
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
