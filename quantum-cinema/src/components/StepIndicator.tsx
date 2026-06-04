@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const STEPS = [
   { label: "Nobel Prize", short: "01" },
@@ -74,10 +75,13 @@ export default function StepIndicator({
           })}
         </div>
 
-        {/* Progress fraction */}
-        <span className="text-[10px] font-mono text-muted-foreground/30">
-          {currentStep + 1}/4
-        </span>
+        {/* Progress fraction + theme toggle */}
+        <div className="flex items-center gap-3">
+          <span className="text-[10px] font-mono text-muted-foreground/30">
+            {currentStep + 1}/4
+          </span>
+          <ThemeToggle />
+        </div>
       </div>
 
       {/* Progress bar */}
