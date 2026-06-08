@@ -13,41 +13,6 @@ import RadarChart from "@/components/RadarChart";
 // Based on actual device characteristics from design document
 const DEVICES = [
   {
-    id: "sv1",
-    name: "SV1 Simulator",
-    provider: "AWS",
-    technology: "Classical Simulator",
-    color: "#00f0ff",
-    rgb: "0, 240, 255",
-    scores: {
-      "Coherence": 100,
-      "Gate Fidelity": 100,
-      "Connectivity": 100,
-      "Error Rate": 100, // inverted: lower error = higher score
-      "Energy Eff.": 80,
-      "Qubits": 15,
-    },
-    envImpact: {
-      "Carbon Footprint": 20,
-      "Energy Usage": 30,
-      "Cooling Req.": 10,
-      "Material Use": 15,
-      "E-Waste": 10,
-      "Water Usage": 15,
-    },
-    details: {
-      coherenceTime: "Infinite",
-      gateFidelity: "100%",
-      connectivity: "Full (all-to-all)",
-      errorRate: "0%",
-      energyCost: "Classical compute",
-      qubits: "Up to 34",
-    },
-    limitation:
-      "No physical reality — cannot model noise, decoherence, or energy constraints",
-    bestFor: "Testing quantum algorithms before physical deployment",
-  },
-  {
     id: "ionq",
     name: "IonQ Aria",
     provider: "IonQ",
@@ -180,13 +145,6 @@ const APPLICATION_MATCHES = [
     reason:
       "Native analog simulation matches the physics of materials science naturally",
     icon: "🌱",
-  },
-  {
-    problem: "Test algorithms",
-    best: "sv1",
-    reason:
-      "Only option for debugging with 1000+ qubits, but provides false confidence",
-    icon: "🧪",
   },
 ];
 

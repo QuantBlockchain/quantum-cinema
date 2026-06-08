@@ -17,7 +17,7 @@
   <a href="#-research-context">Research Context</a> ·
   <a href="#-overview">Overview</a> ·
   <a href="#-the-four-act-experience">The Experience</a> ·
-  <a href="#-the-four-worlds">The Four Worlds</a> ·
+  <a href="#-the-three-worlds">The Three Worlds</a> ·
   <a href="#-architecture">Architecture</a> ·
   <a href="#-quick-start">Quick Start</a> ·
   <a href="#-future-research">Future Research</a>
@@ -25,7 +25,7 @@
 
 ---
 
-> **Quantum Cinema** turns invisible quantum hardware into a cinematic, browsable experience. Real quantum processors — trapped ions, superconducting circuits, neutral atoms, and simulators on AWS Braket — are reimagined as **generative world models**: immersive 3D "worlds" that are not *filmed* but *dreamed* by AI. Decoherence, laser cooling, and energy loss become things you can **watch happen**, conditioned on real device characteristics. No headset. No PhD. No live quantum hardware. Just a browser and curiosity.
+> **Quantum Cinema** turns invisible quantum hardware into a cinematic, browsable experience. Real quantum processors — trapped ions, superconducting circuits, and neutral atoms on AWS Braket — are reimagined as **generative world models**: immersive 3D "worlds" that are not *filmed* but *dreamed* by AI. Decoherence, laser cooling, and energy loss become things you can **watch happen**, conditioned on real device characteristics. No headset. No PhD. No live quantum hardware. Just a browser and curiosity.
 
 </div>
 
@@ -80,22 +80,22 @@ Quantum Cinema makes three physical phenomena — the forces that decide whether
 
 ## 🌐 Overview
 
-> **In plain terms:** Quantum Cinema is a guided, four-step tour of the quantum-computing landscape. You start at the Nobel Prize that made it famous, watch AI-dreamed "documentaries" of four real quantum machines, step *inside* an explorable 3D world for the one you pick, and finish at a side-by-side comparison that shows why no single machine wins — each is brilliant at one thing and helpless at another.
+> **In plain terms:** Quantum Cinema is a guided, four-step tour of the quantum-computing landscape. You start at the Nobel Prize that made it famous, watch AI-dreamed "documentaries" of three real quantum machines, step *inside* an explorable 3D world for the one you pick, and finish at a side-by-side comparison of all three architectures that shows why no single machine wins — each is brilliant at one thing and helpless at another.
 
-The experience is built as a single-page **Next.js 16 / React 19** application, animated with **Framer Motion**, and deployed to AWS as a containerized service behind a global CDN. The four immersive worlds are hosted as **World Labs generative scenes** ([marble.worldlabs.ai](https://marble.worldlabs.ai)) and embedded directly into the explore step.
+The experience is built as a single-page **Next.js 16 / React 19** application, animated with **Framer Motion**, and deployed to AWS as a containerized service behind a global CDN. The three device worlds (trapped-ion, superconducting, neutral-atom) are hosted as **World Labs generative scenes** ([marble.worldlabs.ai](https://marble.worldlabs.ai)) and opened in a new tab from the explore step.
 
 ### ✨ Key Features
 
 | Feature | Detail |
 |---|---|
 | 🎞️ **Four-act cinematic flow** | Nobel Prize → World Models → Explore → Compare, with animated step transitions |
-| 🌌 **AI-dreamed device worlds** | Trapped-ion, superconducting, neutral-atom, and simulator architectures as generative 3D scenes |
+| 🌌 **AI-dreamed device worlds** | Trapped-ion, superconducting, and neutral-atom architectures as explorable generative 3D scenes |
 | 📊 **Real device data** | Coherence time, gate fidelity, connectivity, error rate, qubit count — sourced from actual AWS Braket hardware |
 | 🕹️ **Interactive radar comparison** | Normalized 0–100 scoring across six axes with a live radar chart |
 | ✨ **Particle field + quantum grid** | Per-step accent colours, animated particle backdrop, scan-line and shimmer effects |
 | 🌗 **Dark / light theme** | Cinematic dark default with a one-tap toggle; no-flash, preference persisted |
 | 🎬 **Documentary narration** | Each world ships a three-beat narrative arc revealing its strength *and* its fatal flaw |
-| 🛡️ **Security-first delivery** | CloudFront → ALB secret-header gate → private ECS; HSTS, CSP, XSS protection |
+| 🛡️ **Security-first delivery** | CloudFront → ALB secret-header gate → private ECS; HSTS, frame/content-type options, XSS protection |
 
 ---
 
@@ -124,7 +124,7 @@ The experience is built as a single-page **Next.js 16 / React 19** application, 
   │  🎞️  WORLD MODELS  /  VIDEO SHOWCASE                                       │
   │      "Watch the invisible become visible."                                │
   │                                                                           │
-  │   AI-dreamed documentary clips of four quantum architectures.            │
+  │   AI-dreamed documentary clips of three quantum architectures.           │
   │   👆 Pick the machine whose world you want to step inside.                │
   └────────────────────────────────────┬──────────────────────────────────────┘
                                         │  ▼ select a device
@@ -132,8 +132,8 @@ The experience is built as a single-page **Next.js 16 / React 19** application, 
   │  🌌  WORLD MODEL  /  EXPLORE                                               │
   │      "Step inside the machine you chose."                                 │
   │                                                                           │
-  │   An embedded, explorable World Labs 3D scene + a guided breakdown:       │
-  │   how entanglement physically happens in *this* architecture,            │
+  │   An explorable World Labs 3D scene (opens in a new tab) + a guided       │
+  │   breakdown: how entanglement physically happens in *this* architecture,  │
   │   mapped element-by-element onto what you're seeing.                      │
   └────────────────────────────────────┬──────────────────────────────────────┘
                                         │  ▼ next
@@ -141,7 +141,7 @@ The experience is built as a single-page **Next.js 16 / React 19** application, 
   │  📊  THE COMPARISON                                                        │
   │      "Why is there no single 'best' quantum computer?"                    │
   │                                                                           │
-  │   Radar chart + metric tables across all four devices.                   │
+  │   Radar chart + metric tables across all three devices.                  │
   │   The punchline: every machine is a master of one task and               │
   │   useless at another. The trade-offs *are* the science.                  │
   └───────────────────────────────────────────────────────────────────────────┘
@@ -151,16 +151,9 @@ The experience is built as a single-page **Next.js 16 / React 19** application, 
 
 ---
 
-## 🌌 The Four Worlds
+## 🌌 The Three Worlds
 
 > Each quantum architecture on AWS Braket is reimagined as a named, visual world — with real performance metrics and a three-beat documentary narrative that reveals both its superpower and its Achilles' heel.
-
-### 💎 SV1 Simulator — *"The Perfect Dream"* · `Crystal Matrix`
-A mathematically perfect crystalline grid breathing with deterministic precision. No noise, no decay — only pure quantum logic in infinite resolution. **The catch:** it isn't real, so it can never model the noise that breaks actual hardware.
-
-| Metric | Value |
-|---|---|
-| Coherence | ♾️ Infinite | Fidelity 100% | Qubits ≤ 34 | Connectivity Full (all-to-all) | Error 0% |
 
 ### 🔮 IonQ Aria — *"Light Suspension"* · `Light Suspension`
 Ytterbium ions levitated in a vacuum, pinned by light rather than matter, holding their quantum state for *seconds* — an eternity in the quantum world. **The catch:** gates are agonizingly slow, capping computational depth.
@@ -228,11 +221,11 @@ The core lesson of the Comparison act: **you cannot optimize all six at once.** 
 │                                                                       │
 │      NobelPrizeStep · VideoShowcaseStep · WorldModelStep · Comparison │
 └──────────────┬─────────────────────────────────────────────────────────┘
-               │  embeds (iframe)
+               │  opens in a new tab (window.open)
                ▼
 ┌──────────────────────────────────────────────────────────────────────┐
 │  🌌 WORLD LABS  (marble.worldlabs.ai)                                 │
-│      Generative 3D "worlds" — one per quantum architecture            │
+│      Generative 3D "worlds" — one per physical quantum architecture   │
 └──────────────────────────────────────────────────────────────────────┘
 
    📼 Static assets baked into the image:  /videos/*.mp4 · /laureates/*
@@ -295,7 +288,7 @@ quantum-cinema/                          # ← repo root (AWS CDK infrastructure
 │   │   │   ├── steps/
 │   │   │   │   ├── NobelPrizeStep.tsx        # Act 1 — laureates + 125-yr timeline
 │   │   │   │   ├── VideoShowcaseStep.tsx     # Act 2 — AI-dreamed device clips
-│   │   │   │   ├── WorldModelStep.tsx        # Act 3 — embedded World Labs scene
+│   │   │   │   ├── WorldModelStep.tsx        # Act 3 — World Labs scene (opens in new tab)
 │   │   │   │   └── ComparisonStep.tsx        # Act 4 — radar + metric tables
 │   │   │   └── ui/                      # shadcn/ui primitives (card, tabs, badge…)
 │   │   └── lib/
@@ -370,7 +363,7 @@ On success, CDK prints three outputs:
 | **Styling** | Tailwind CSS 4 · shadcn/ui · `tw-animate-css` · CSS custom-property theming |
 | **Animation** | Framer Motion 12 |
 | **Icons / Fonts** | Lucide · Inter · Space Grotesk · JetBrains Mono (via `next/font`) |
-| **3D Worlds** | World Labs generative scenes (embedded) |
+| **3D Worlds** | World Labs generative scenes (opened in a new tab) |
 | **Infrastructure** | AWS CDK (TypeScript) · ECS Fargate · ALB · CloudFront · VPC · S3 |
 | **Runtime** | Node 20 Alpine · multi-stage Docker · non-root container |
 
@@ -416,7 +409,7 @@ On success, CDK prints three outputs:
   └───────────────────┘   └──────────────────────┘   └──────────────────────┘
 
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ✅ NOW     🎬 Four-act flow · 4 device worlds · radar comparison · deployed
+  ✅ NOW     🎬 Four-act flow · 3 device worlds · radar comparison · deployed
   📦 1–2 yr  📊 Quantum-literacy user studies · 🌌 Braket-data-conditioned worlds
   🔭 2–4 yr  ⚛️ Live QPU result streaming · VR/AR immersive walkthroughs
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

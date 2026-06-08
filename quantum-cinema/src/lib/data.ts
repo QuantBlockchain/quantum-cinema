@@ -26,39 +26,6 @@ export interface QuantumDevice {
 
 export const devices: QuantumDevice[] = [
   {
-    id: "sv1",
-    name: "SV1 Simulator",
-    subtitle: "The Perfect Dream",
-    technology: "Classical computer simulating perfect quantum logic",
-    provider: "AWS",
-    color: "#00f0ff",
-    colorRgb: "0, 240, 255",
-    icon: "Crystal",
-    worldName: "Crystal Matrix",
-    worldDescription:
-      "A mathematically perfect crystalline grid breathing with deterministic precision. No noise, no decay, no limits — only pure quantum logic rendered in infinite resolution.",
-    metrics: {
-      coherenceTime: "Infinite",
-      gateFidelity: "100%",
-      connectivity: "Full (all-to-all)",
-      errorRate: "0%",
-      energyCost: "Classical compute",
-      qubits: "Up to 34",
-    },
-    limitation:
-      "No physical reality — cannot model noise, decoherence, or energy constraints that limit real quantum computers",
-    bestFor: "Testing quantum algorithms before physical deployment",
-    bestForDetail:
-      "Only option for debugging algorithms with 1000+ qubits, but provides false confidence — algorithms that work perfectly in simulation often fail on real hardware due to noise and decoherence.",
-    visualStyle:
-      "Pristine geometric lattice, crystalline blue light, perfect symmetry, no visual noise",
-    documentaryNarrative: [
-      "Enter the perfect world — where every qubit obeys, every gate executes flawlessly.",
-      "Watch as quantum algorithms unfold with mathematical precision, unburdened by the chaos of physical reality.",
-      "But perfection is a lie. The real quantum world waits beyond this simulation, where noise and decay rule.",
-    ],
-  },
-  {
     id: "ionq",
     name: "IonQ Aria",
     subtitle: "Light Suspension",
