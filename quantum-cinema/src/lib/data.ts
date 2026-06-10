@@ -1,22 +1,35 @@
+// Paradigm determines which metric definitions apply. Gate-based devices report
+// gate-model calibration (two-qubit gate fidelity); analog devices (AHS) report
+// platform-native equivalents on the same comparison axes. See
+// docs/world-models/significance-analysis.md (Q3).
+export type Paradigm = "gate-based" | "analog";
+
 export interface QuantumDevice {
   id: string;
   name: string;
   subtitle: string;
   technology: string;
   provider: string;
+  paradigm: Paradigm;
   color: string;
   colorRgb: string;
   icon: string;
   worldName: string;
   worldDescription: string;
+  // Performance metrics suitable for cross-device comparison: platform-agnostic,
+  // normalizable, and monotonic (Q3). For analog devices, fidelity is the
+  // sequence-level (platform-native) equivalent of the gate-model fidelity.
   metrics: {
     coherenceTime: string;
-    gateFidelity: string;
-    connectivity: string;
+    twoQubitGateFidelity: string;
+    readoutFidelity: string;
     errorRate: string;
-    energyCost: string;
+    connectivity: string;
     qubits: string;
   };
+  // Operational, not a measure of entanglement quality — kept off the
+  // performance axes (Q3 design rule).
+  operationalCost: string;
   limitation: string;
   bestFor: string;
   bestForDetail: string;
@@ -31,6 +44,7 @@ export const devices: QuantumDevice[] = [
     subtitle: "Light Suspension",
     technology: "Ytterbium ions levitated in vacuum and manipulated by lasers",
     provider: "IonQ",
+    paradigm: "gate-based",
     color: "#a855f7",
     colorRgb: "168, 85, 247",
     icon: "Atom",
@@ -39,12 +53,13 @@ export const devices: QuantumDevice[] = [
       "Atoms floating in harmonic suspension, pinned by light rather than matter. A serene vacuum chamber where ytterbium ions dance in laser beams, holding quantum secrets for seconds — an eternity in the quantum world.",
     metrics: {
       coherenceTime: "~1-10 seconds",
-      gateFidelity: "99.5%+",
-      connectivity: "Full (all-to-all)",
+      twoQubitGateFidelity: "99.5%+",
+      readoutFidelity: "~99.7%",
       errorRate: "~0.5%",
-      energyCost: "High (lasers + vacuum)",
+      connectivity: "Full (all-to-all)",
       qubits: "25",
     },
+    operationalCost: "High (lasers + vacuum)",
     limitation:
       "Extremely slow operation speeds (gates take ~10-50 microseconds) limit computational depth despite long coherence",
     bestFor: "Discovering new drugs (small molecules)",
@@ -64,6 +79,7 @@ export const devices: QuantumDevice[] = [
     subtitle: "Frozen Forge",
     technology: "Superconducting circuits chilled to near absolute zero (~10mK)",
     provider: "Rigetti",
+    paradigm: "gate-based",
     color: "#f59e0b",
     colorRgb: "245, 158, 11",
     icon: "Zap",
@@ -72,12 +88,13 @@ export const devices: QuantumDevice[] = [
       "Golden circuitry encased in frost, pulsing with frenetic energy. A dilution refrigerator colder than outer space, where superconducting qubits race against time — executing billions of operations before the cold loses its grip.",
     metrics: {
       coherenceTime: "~20-100 microseconds",
-      gateFidelity: "99.0%+",
-      connectivity: "Limited (nearest-neighbor)",
+      twoQubitGateFidelity: "99.0%+",
+      readoutFidelity: "~97-99%",
       errorRate: "~1%",
-      energyCost: "Very high (cryogenics)",
+      connectivity: "Limited (nearest-neighbor)",
       qubits: "84",
     },
+    operationalCost: "Very high (cryogenics)",
     limitation:
       "Fragile quantum states decay in ~20-100 microseconds (1000x faster than ions), requiring extremely fast operations",
     bestFor: "Optimizing national power grids",
@@ -98,20 +115,24 @@ export const devices: QuantumDevice[] = [
     technology:
       "Neutral atoms arranged by optical tweezers at room temperature",
     provider: "QuEra",
+    paradigm: "analog",
     color: "#10b981",
     colorRgb: "16, 185, 129",
     icon: "Waves",
     worldName: "Wave Garden",
     worldDescription:
       "A rippling landscape of interference patterns, where neutral atoms are arranged by beams of light into precise geometric formations. Nature's own quantum simulator, solving physics by being physics.",
+    // Analog (AHS) device: no gate-model fidelity. Values are platform-native
+    // equivalents — sequence-level success fraction and single-site readout.
     metrics: {
       coherenceTime: "~1-10 microseconds",
-      gateFidelity: "~97-99%",
-      connectivity: "Programmable geometry",
+      twoQubitGateFidelity: "~97-99% (sequence-level)",
+      readoutFidelity: "~99% (per-atom)",
       errorRate: "~1-3%",
-      energyCost: "Moderate",
+      connectivity: "Programmable geometry",
       qubits: "256",
     },
+    operationalCost: "Moderate",
     limitation:
       'Limited to specific "analog" quantum simulations; cannot easily run general digital algorithms like factoring',
     bestFor: "Designing carbon capture materials",
@@ -133,6 +154,8 @@ export interface MetricInfo {
   impact: string;
 }
 
+// Performance metrics for cross-device comparison: platform-agnostic,
+// normalizable, monotonic. See docs/world-models/significance-analysis.md (Q3).
 export const metricsInfo: MetricInfo[] = [
   {
     name: "Coherence Time",
@@ -142,11 +165,25 @@ export const metricsInfo: MetricInfo[] = [
       "Drug simulations require maintaining quantum states across hundreds of operations. Short coherence = simulation crashes before finding the cure.",
   },
   {
-    name: "Gate Fidelity",
+    name: "Two-Qubit Gate Fidelity",
     simple:
-      "Accuracy of quantum operations. 99.9% = 1 error per 1000 operations",
+      "Accuracy of the entangling operation between two qubits. 99.9% = 1 error per 1000 operations",
     impact:
       "Accumulated errors from low fidelity produce nonsense molecular structures in drug discovery.",
+  },
+  {
+    name: "Readout Fidelity",
+    simple:
+      "Accuracy of measuring a qubit's final state",
+    impact:
+      "Faulty readout corrupts the answer even when the computation itself was correct; it also limits how reliably entanglement can be verified.",
+  },
+  {
+    name: "Error Rate",
+    simple:
+      "Frequency of operation errors (one minus gate fidelity)",
+    impact:
+      "High error rates (>1%) require quantum error correction that demands 1000+ physical qubits per logical qubit.",
   },
   {
     name: "Connectivity",
@@ -156,17 +193,10 @@ export const metricsInfo: MetricInfo[] = [
       "Protein folding involves long-range molecular interactions; limited connectivity forces inefficient workarounds.",
   },
   {
-    name: "Error Rate",
+    name: "Scale",
     simple:
-      "Frequency of random bit-flips caused by noise",
+      "Number of qubits or atoms in the system",
     impact:
-      "High error rates (>1%) require quantum error correction that demands 1000+ physical qubits per logical qubit.",
-  },
-  {
-    name: "Energy Cost",
-    simple:
-      "Power consumed to maintain quantum states (lasers for ions, cryogenics for superconductors)",
-    impact:
-      "The carbon footprint of the quantum computer itself must be offset by its optimization gains.",
+      "Larger problems need more qubits; scale bounds the size of molecule or grid that can be represented at all.",
   },
 ];

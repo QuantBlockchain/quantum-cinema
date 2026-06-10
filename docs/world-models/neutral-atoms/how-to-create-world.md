@@ -42,7 +42,7 @@ The three input images above were supplied to Nano-Banana together with the [Nan
 
 ### Step 3 — Lift the concept image into an explorable world with Marble
 
-`nano-banana-output.jpg` was then used as the **reference image** for Marble (World Labs), together with the [Marble Prompt](#marble-prompt) below. Marble lifts the single still into a navigable, photorealistic 3D world: [Explore on Marble](https://marble.worldlabs.ai/world/510dff36-2d42-4686-9651-a9a9d2a65074).
+`nano-banana-output.jpg` was then used as the **reference image** for Marble (World Labs), together with the [Marble Prompt](#marble-prompt) below. Marble lifts the single still into a navigable, photorealistic 3D world: [Explore on Marble](https://marble.worldlabs.ai/world/a6617b56-2638-48cb-8202-340ddaf831e4).
 
 ### Step 4 — Explore and capture
 

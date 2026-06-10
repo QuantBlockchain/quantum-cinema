@@ -48,8 +48,16 @@ export default function RadarChart({ series, size = 280 }: RadarChartProps) {
       .join(" ");
   };
 
+  // Pad the viewBox so axis labels (placed outside maxRadius) are not clipped
+  // at the SVG edge. Horizontal labels overrun the most, so pad sides more.
+  const padX = 92;
+  const padY = 32;
+
   return (
-    <svg viewBox={`0 0 ${size} ${size}`} className="w-full h-full">
+    <svg
+      viewBox={`${-padX} ${-padY} ${size + padX * 2} ${size + padY * 2}`}
+      className="w-full h-full"
+    >
       {/* Grid levels */}
       {Array.from({ length: levels }, (_, i) => {
         const r = ((i + 1) / levels) * maxRadius;
@@ -64,7 +72,7 @@ export default function RadarChart({ series, size = 280 }: RadarChartProps) {
             key={i}
             points={points}
             fill="none"
-            stroke="rgba(255,255,255,0.06)"
+            stroke="rgba(255,255,255,0.12)"
             strokeWidth="0.5"
           />
         );
@@ -81,7 +89,7 @@ export default function RadarChart({ series, size = 280 }: RadarChartProps) {
             y1={center}
             x2={end.x}
             y2={end.y}
-            stroke="rgba(255,255,255,0.06)"
+            stroke="rgba(255,255,255,0.1)"
             strokeWidth="0.5"
           />
         );
@@ -140,8 +148,13 @@ export default function RadarChart({ series, size = 280 }: RadarChartProps) {
             y={p.y}
             textAnchor={textAnchor}
             dominantBaseline="central"
-            className="fill-muted-foreground/50"
-            style={{ fontSize: "8px", fontFamily: "var(--font-mono)" }}
+            className="fill-foreground/85"
+            style={{
+              fontSize: "9.5px",
+              fontFamily: "var(--font-mono)",
+              fontWeight: 500,
+              letterSpacing: "0.02em",
+            }}
           >
             {label}
           </text>

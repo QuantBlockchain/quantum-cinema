@@ -8,7 +8,9 @@ const app = new cdk.App();
 new QcWorldlabsStack(app, "QcWorldlabsStack", {
   env: {
     account: process.env.CDK_DEFAULT_ACCOUNT,
-    region: process.env.CDK_DEFAULT_REGION || "us-east-1",
+    // Pinned to us-west-2: the deployed stack lives there. Do not change
+    // without migrating the stack, or CDK will create a duplicate elsewhere.
+    region: "us-west-2",
   },
   description:
     "Quantum Cinema - Interactive quantum computing visualization with CloudFront + ALB + ECS Fargate",

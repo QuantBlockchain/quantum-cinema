@@ -1,6 +1,6 @@
 # Explaining Quantum Entanglement with the Trapped-Ion World Model
 
-This note explains how the trapped-ion world model visualizes quantum entanglement, using a single representative frame as the reference figure. It is intended as expository material for a paper. The world itself is explorable — [Marble (World Labs)](https://marble.worldlabs.ai/world/7f7dcf51-4c04-407d-9000-eb3321432fb3) — and additional frames are available, but the discussion here is built around one image; the other captures are alternate viewpoints of the same scene and carry no temporal ordering. How the world was generated is documented separately in [how-to-create-world.md](how-to-create-world.md).
+This note explains how the trapped-ion world model visualizes quantum entanglement, using a single representative frame as the reference figure. It is intended as expository material for a paper. The world itself is explorable — [Marble (World Labs)](https://marble.worldlabs.ai/world/ec99b4d4-6431-4224-a816-836819564282) — and additional frames are available, but the discussion here is built around one image; the other captures are alternate viewpoints of the same scene and carry no temporal ordering. How the world was generated is documented separately in [how-to-create-world.md](how-to-create-world.md).
 
 ## The Representative Figure
 

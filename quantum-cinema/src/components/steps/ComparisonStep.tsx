@@ -9,38 +9,35 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import RadarChart from "@/components/RadarChart";
 
-// Normalized scores 0-100 for radar chart
-// Based on actual device characteristics from design document
+// Performance metrics normalized to 0-100 for the radar chart. Axes are the
+// platform-agnostic, normalizable, monotonic set recommended for cross-device
+// comparison \u2014 see docs/world-models/significance-analysis.md (Q3). Error Rate
+// is inverted (higher score = lower error) so every axis reads "higher = better".
+// For analog devices, fidelity axes use platform-native (sequence-level/per-atom)
+// equivalents reported on the same scale.
 const DEVICES = [
   {
     id: "ionq",
     name: "IonQ Aria",
     provider: "IonQ",
     technology: "Trapped Ion",
+    paradigm: "gate-based" as const,
     color: "#a855f7",
     rgb: "168, 85, 247",
     scores: {
       "Coherence": 95,
-      "Gate Fidelity": 90,
-      "Connectivity": 95,
+      "2Q Fidelity": 90,
+      "Readout": 95,
       "Error Rate": 85,
-      "Energy Eff.": 35,
-      "Qubits": 12,
-    },
-    envImpact: {
-      "Carbon Footprint": 70,
-      "Energy Usage": 75,
-      "Cooling Req.": 40,
-      "Material Use": 50,
-      "E-Waste": 45,
-      "Water Usage": 35,
+      "Connectivity": 95,
+      "Scale": 12,
     },
     details: {
       coherenceTime: "~1-10 seconds",
-      gateFidelity: "99.5%+",
-      connectivity: "Full (all-to-all)",
+      twoQubitFidelity: "99.5%+",
+      readoutFidelity: "~99.7%",
       errorRate: "~0.5%",
-      energyCost: "High (lasers + vacuum)",
+      connectivity: "Full (all-to-all)",
       qubits: "25",
     },
     limitation:
@@ -52,30 +49,23 @@ const DEVICES = [
     name: "Rigetti Ankaa-3",
     provider: "Rigetti",
     technology: "Superconducting",
+    paradigm: "gate-based" as const,
     color: "#f59e0b",
     rgb: "245, 158, 11",
     scores: {
       "Coherence": 25,
-      "Gate Fidelity": 80,
-      "Connectivity": 30,
+      "2Q Fidelity": 80,
+      "Readout": 70,
       "Error Rate": 70,
-      "Energy Eff.": 20,
-      "Qubits": 45,
-    },
-    envImpact: {
-      "Carbon Footprint": 90,
-      "Energy Usage": 95,
-      "Cooling Req.": 95,
-      "Material Use": 70,
-      "E-Waste": 65,
-      "Water Usage": 80,
+      "Connectivity": 30,
+      "Scale": 45,
     },
     details: {
       coherenceTime: "~20-100 \u00b5s",
-      gateFidelity: "99.0%+",
-      connectivity: "Limited (nearest-neighbor)",
+      twoQubitFidelity: "99.0%+",
+      readoutFidelity: "~97-99%",
       errorRate: "~1%",
-      energyCost: "Very high (cryogenics)",
+      connectivity: "Limited (nearest-neighbor)",
       qubits: "84",
     },
     limitation:
@@ -87,30 +77,23 @@ const DEVICES = [
     name: "QuEra Aquila",
     provider: "QuEra",
     technology: "Neutral Atom",
+    paradigm: "analog" as const,
     color: "#10b981",
     rgb: "16, 185, 129",
     scores: {
       "Coherence": 20,
-      "Gate Fidelity": 65,
-      "Connectivity": 70,
+      "2Q Fidelity": 65,
+      "Readout": 80,
       "Error Rate": 55,
-      "Energy Eff.": 65,
-      "Qubits": 100,
-    },
-    envImpact: {
-      "Carbon Footprint": 45,
-      "Energy Usage": 50,
-      "Cooling Req.": 20,
-      "Material Use": 35,
-      "E-Waste": 30,
-      "Water Usage": 25,
+      "Connectivity": 70,
+      "Scale": 100,
     },
     details: {
       coherenceTime: "~1-10 \u00b5s",
-      gateFidelity: "~97-99%",
-      connectivity: "Programmable geometry",
+      twoQubitFidelity: "~97-99% (sequence)",
+      readoutFidelity: "~99% (per-atom)",
       errorRate: "~1-3%",
-      energyCost: "Moderate",
+      connectivity: "Programmable geometry",
       qubits: "256",
     },
     limitation:
@@ -119,9 +102,12 @@ const DEVICES = [
   },
 ];
 
-const COMPARISON_VIEWS = [
-  { id: "performance", label: "Performance" },
-  { id: "environment", label: "Environmental Impact" },
+// Tabs filter the comparison by computational paradigm. Gate-based and analog
+// devices are benchmarked differently, so they are grouped rather than mixed on
+// one chart — see docs/world-models/significance-analysis.md (Q3).
+const PARADIGM_VIEWS = [
+  { id: "gate-based", label: "Gate-Based" },
+  { id: "analog", label: "Analog" },
 ];
 
 const APPLICATION_MATCHES = [
@@ -149,32 +135,26 @@ const APPLICATION_MATCHES = [
 ];
 
 export default function ComparisonStep({ onBack }: { onBack: () => void }) {
-  const [view, setView] = useState("performance");
-  const [selectedDevices, setSelectedDevices] = useState<string[]>([
-    "ionq",
-    "rigetti",
-    "quera",
-  ]);
+  const [view, setView] = useState("gate-based");
+  const [deselected, setDeselected] = useState<string[]>([]);
 
   const toggleDevice = (id: string) => {
-    setSelectedDevices((prev) => {
-      if (prev.includes(id)) {
-        if (prev.length <= 1) return prev; // Keep at least 1
-        return prev.filter((d) => d !== id);
-      }
-      return [...prev, id];
-    });
+    setDeselected((prev) =>
+      prev.includes(id) ? prev.filter((d) => d !== id) : [...prev, id]
+    );
   };
 
-  const selectedData = DEVICES.filter((d) => selectedDevices.includes(d.id));
+  // Devices in the active paradigm tab; within those, the ones still selected.
+  const paradigmDevices = DEVICES.filter((d) => d.paradigm === view);
+  const selectedData = paradigmDevices.filter(
+    (d) => !deselected.includes(d.id)
+  );
 
   const radarSeries = selectedData.map((d) => ({
     name: d.name,
     color: d.color,
     rgb: d.rgb,
-    data: Object.entries(
-      view === "performance" ? d.scores : d.envImpact
-    ).map(([axis, value]) => ({ axis, value })),
+    data: Object.entries(d.scores).map(([axis, value]) => ({ axis, value })),
   }));
 
   return (
@@ -201,9 +181,10 @@ export default function ComparisonStep({ onBack }: { onBack: () => void }) {
         </h1>
 
         <p className="text-muted-foreground text-sm leading-relaxed max-w-2xl mx-auto">
-          Compare quantum computing architectures across performance metrics and
-          environmental impact. Each technology makes different tradeoffs — there
-          is no single &ldquo;best&rdquo; quantum computer.
+          Compare quantum computing architectures across the performance metrics
+          that matter for entanglement, grouped by computational paradigm. Each
+          technology makes different tradeoffs — there is no single
+          &ldquo;best&rdquo; quantum computer.
         </p>
       </motion.div>
 
@@ -214,44 +195,13 @@ export default function ComparisonStep({ onBack }: { onBack: () => void }) {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="max-w-5xl mx-auto mb-8"
       >
-        <div className="flex flex-wrap justify-center gap-2 mb-6">
-          {DEVICES.map((d) => (
-            <button
-              key={d.id}
-              onClick={() => toggleDevice(d.id)}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-mono tracking-wider transition-all duration-300"
-              style={{
-                borderColor: selectedDevices.includes(d.id)
-                  ? `rgba(${d.rgb}, 0.4)`
-                  : "rgba(255,255,255,0.08)",
-                background: selectedDevices.includes(d.id)
-                  ? `rgba(${d.rgb}, 0.1)`
-                  : "transparent",
-                color: selectedDevices.includes(d.id)
-                  ? d.color
-                  : "var(--muted-foreground)",
-              }}
-            >
-              <div
-                className="size-2 rounded-full"
-                style={{
-                  background: selectedDevices.includes(d.id)
-                    ? d.color
-                    : "var(--muted-foreground)",
-                }}
-              />
-              {d.name}
-            </button>
-          ))}
-        </div>
-
         <Tabs
           value={view}
           onValueChange={setView}
-          className="flex justify-center"
+          className="flex justify-center mb-6"
         >
           <TabsList className="bg-secondary/30">
-            {COMPARISON_VIEWS.map((v) => (
+            {PARADIGM_VIEWS.map((v) => (
               <TabsTrigger
                 key={v.id}
                 value={v.id}
@@ -262,12 +212,40 @@ export default function ComparisonStep({ onBack }: { onBack: () => void }) {
             ))}
           </TabsList>
         </Tabs>
+
+        <div className="flex flex-wrap justify-center gap-2">
+          {paradigmDevices.map((d) => {
+            const active = !deselected.includes(d.id);
+            return (
+              <button
+                key={d.id}
+                onClick={() => toggleDevice(d.id)}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg border text-xs font-mono tracking-wider transition-all duration-300"
+                style={{
+                  borderColor: active
+                    ? `rgba(${d.rgb}, 0.4)`
+                    : "rgba(255,255,255,0.08)",
+                  background: active ? `rgba(${d.rgb}, 0.1)` : "transparent",
+                  color: active ? d.color : "var(--muted-foreground)",
+                }}
+              >
+                <div
+                  className="size-2 rounded-full"
+                  style={{
+                    background: active ? d.color : "var(--muted-foreground)",
+                  }}
+                />
+                {d.name}
+              </button>
+            );
+          })}
+        </div>
       </motion.div>
 
       {/* Radar Chart + Details */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={`${view}-${selectedDevices.join(",")}`}
+          key={`${view}-${selectedData.map((d) => d.id).join(",")}`}
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0 }}
@@ -279,9 +257,7 @@ export default function ComparisonStep({ onBack }: { onBack: () => void }) {
             <Card className="bg-card/50 border-border/50">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-mono tracking-wider text-muted-foreground/60">
-                  {view === "performance"
-                    ? "PERFORMANCE METRICS"
-                    : "ENVIRONMENTAL IMPACT"}
+                  PERFORMANCE METRICS
                 </CardTitle>
               </CardHeader>
               <CardContent className="flex justify-center">
@@ -382,27 +358,19 @@ export default function ComparisonStep({ onBack }: { onBack: () => void }) {
             <Card className="bg-card/50 border-border/50">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-mono tracking-wider text-muted-foreground/60">
-                  {view === "performance"
-                    ? "METRIC BREAKDOWN"
-                    : "ENVIRONMENTAL IMPACT BREAKDOWN"}
+                  METRIC BREAKDOWN
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-5">
-                {Object.keys(
-                  view === "performance"
-                    ? DEVICES[0].scores
-                    : DEVICES[0].envImpact
-                ).map((metric) => (
+                {Object.keys(paradigmDevices[0].scores).map((metric) => (
                   <div key={metric} className="mb-4 last:mb-0">
                     <div className="text-[9px] font-mono text-muted-foreground/40 tracking-wider mb-1.5 uppercase">
                       {metric}
                     </div>
                     <div className="space-y-1">
                       {selectedData.map((d) => {
-                        const scores =
-                          view === "performance" ? d.scores : d.envImpact;
                         const val =
-                          scores[metric as keyof typeof scores] || 0;
+                          d.scores[metric as keyof typeof d.scores] || 0;
                         return (
                           <div
                             key={d.id}
@@ -526,15 +494,16 @@ export default function ComparisonStep({ onBack }: { onBack: () => void }) {
               There is no single &ldquo;best&rdquo; quantum computer.
               Superconducting qubits offer{" "}
               <span className="text-accent-gold font-medium">speed</span> but
-              require extreme cooling.{" "}
+              decohere quickly.{" "}
               Trapped ions provide{" "}
               <span className="text-accent-purple font-medium">stability</span>{" "}
-              but operate slowly. Neutral atoms scale to{" "}
+              and high fidelity but operate slowly. Neutral atoms scale to{" "}
               <span className="text-accent-green font-medium">
                 hundreds of qubits
               </span>{" "}
-              with lower environmental impact. The choice depends on the
-              problem — and the environmental cost we&apos;re willing to accept.
+              through a different, analog paradigm. The choice depends on the
+              problem — coherence, fidelity, connectivity, and scale each pull in
+              different directions.
             </p>
           </CardContent>
         </Card>
