@@ -24,9 +24,11 @@
   <a href="#overview">Overview</a> ·
   <a href="#features">Features</a> ·
   <a href="#architecture">Architecture</a> ·
+  <a href="#world-models-documentation">World Models</a> ·
   <a href="#quick-start">Quick Start</a> ·
   <a href="#reproducibility">Reproducibility</a> ·
   <a href="#supplementary-material">Supplementary material</a> ·
+  <a href="#glossary">Glossary</a> ·
   <a href="#license">License</a>
 </p>
 
@@ -83,6 +85,30 @@ Captured still frames and videos are also available for all three platforms:
 - `docs/world-models/ion-trap/ion-trap-screenshots/` + `docs/world-models/ion-trap/ionq-world-explore.mp4`
 - `docs/world-models/superconducting/superconducting-screenshots/` + `docs/world-models/superconducting/superconducting-world-explore.mp4`
 - `docs/world-models/neutral-atoms/neutral-atom-screenshots/` + `docs/world-models/neutral-atoms/quera.mp4`
+
+### Sample World-Model Videos
+
+<figure style="display:inline-block; margin: 0 12px 12px 0; text-align:center; width:320px;">
+  <video controls width="320" preload="metadata">
+    <source src="docs/world-models/ion-trap/ionq-world-explore.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+  <figcaption style="font-size:0.9rem; margin-top:8px;">Ion-trap world exploration</figcaption>
+</figure>
+<figure style="display:inline-block; margin: 0 12px 12px 0; text-align:center; width:320px;">
+  <video controls width="320" preload="metadata">
+    <source src="docs/world-models/superconducting/superconducting-world-explore.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+  <figcaption style="font-size:0.9rem; margin-top:8px;">Superconducting world exploration</figcaption>
+</figure>
+<figure style="display:inline-block; margin: 0 12px 12px 0; text-align:center; width:320px;">
+  <video controls width="320" preload="metadata">
+    <source src="docs/world-models/neutral-atoms/quera.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+  <figcaption style="font-size:0.9rem; margin-top:8px;">Neutral-atom world exploration</figcaption>
+</figure>
 
 ## Quick Start
 
@@ -347,46 +373,40 @@ The core lesson of the Comparison act: **you cannot optimize all six at once.** 
 ## 📁 Repository Structure
 
 ```
-quantum-cinema/                          # ← repo root (AWS CDK infrastructure)
-│
-├── 📦 bin/
-│   └── app.ts                           # CDK app entry point
-│
-├── 🏗️  lib/
-│   └── qc-worldlabs-stack.ts            # Full stack: VPC · ECS · ALB · CloudFront · S3
-│
-├── 🎨 design/
-│   └── design.md                        # ACM MM 2026 design paper & rationale
-│
-├── 🎬 quantum-cinema/                   # Next.js 16 application
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── page.tsx                 # Four-act state machine (step orchestrator)
-│   │   │   ├── layout.tsx               # Fonts · ThemeProvider · no-flash theme script
-│   │   │   └── globals.css              # Light + dark token palettes · glow/grid effects
-│   │   ├── components/
-│   │   │   ├── StepIndicator.tsx        # Top nav: act progress + theme toggle
-│   │   │   ├── ParticleField.tsx        # Animated per-step particle backdrop
-│   │   │   ├── RadarChart.tsx           # Six-axis device comparison chart
-│   │   │   ├── ThemeProvider.tsx        # 🌗 Theme context + localStorage persistence
-│   │   │   ├── ThemeToggle.tsx          # 🌗 Sun/moon switch
-│   │   │   ├── steps/
-│   │   │   │   ├── NobelPrizeStep.tsx        # Act 1 — laureates + 125-yr timeline
-│   │   │   │   ├── VideoShowcaseStep.tsx     # Act 2 — AI-dreamed device clips
-│   │   │   │   ├── WorldModelStep.tsx        # Act 3 — World Labs scene (opens in new tab)
-│   │   │   │   └── ComparisonStep.tsx        # Act 4 — radar + metric tables
-│   │   │   └── ui/                      # shadcn/ui primitives (card, tabs, badge…)
-│   │   └── lib/
-│   │       ├── data.ts                  # ⚛️ Device specs + metric explanations
-│   │       └── utils.ts                 # cn() class merge helper
-│   ├── public/
-│   │   ├── videos/                      # ion-trap · superconducting · neutral-atoms .mp4
-│   │   └── laureates/                   # Clarke · Devoret · Martinis portraits
-│   └── Dockerfile                       # Multi-stage Node 20 Alpine standalone build
-│
-├── 🚀 deploy.sh                         # One-command build + deploy
-├── cdk.json
-└── package.json                         # CDK dependencies
+.
+├── .github/                            # GitHub actions and workflow configs
+│   └── workflows/ci.yml                # CI validation for app, docs, and infra
+├── bin/
+│   └── app.ts                          # CDK app entry point
+├── cdk.json                            # AWS CDK application config
+├── cdk.out/                            # generated AWS CDK synthesis assets
+├── deploy.sh                           # build + deploy script
+├── design/
+│   └── design.md                       # research and design rationale
+├── docs/
+│   ├── en/                             # English design and usage docs
+│   ├── zh/                             # Chinese design and usage docs
+│   └── world-models/                   # world-model creation pipeline and assets
+├── lib/
+│   └── qc-worldlabs-stack.ts           # AWS CDK infrastructure stack
+├── quantum-cinema/                     # Next.js 16 application
+│   ├── Dockerfile                      # frontend container build
+│   ├── package.json                    # app dependencies
+│   ├── package-lock.json               # app lockfile
+│   ├── postcss.config.mjs
+│   ├── tsconfig.json                   # app TypeScript config
+│   ├── eslint.config.mjs
+│   ├── next.config.ts
+│   ├── components.json
+│   ├── public/                         # static assets and video files
+│   └── src/                            # React app source code
+├── CITATION.cff                        # academic citation metadata
+├── LICENSE                             # project license
+├── README.md                           # repository overview and usage guide
+├── SUPPLEMENTARY.md                    # reproducibility and provenance guide
+├── package.json                        # root dependencies and scripts
+├── package-lock.json                   # root npm lockfile
+└── tsconfig.json                       # root TypeScript config
 ```
 
 ---
@@ -454,7 +474,30 @@ On success, CDK prints three outputs:
 
 ---
 
-## 🛡️ Security Model
+## � Glossary
+
+| Term | Explanation |
+|---|---|
+| AWS CDK | A toolkit for defining cloud infrastructure using TypeScript code, so deployment is repeatable and version-controlled. |
+| ALB | Application Load Balancer, a traffic manager that accepts HTTP(S) requests and forwards them to the backend service only if they meet the configured rules. |
+| CDN | Content Delivery Network, a distributed cache that serves static and video assets from servers closer to the viewer for faster loading. |
+| CloudFront | AWS’s CDN service, used here to deliver static content, enforce HTTPS, and protect the backend with a secret header gate. |
+| Container | A packaged application and its dependencies that can run consistently across environments, like a lightweight virtual machine. |
+| ECS Fargate | A serverless AWS service that runs containers without requiring you to manage servers or clusters directly. |
+| Generative world models | AI-generated 3D scenes that approximate what hidden quantum hardware would look like, based on prompt-driven synthesis rather than physical cameras. |
+| Marble | A World Labs service that hosts and streams the generative 3D quantum-world scenes used in the app. |
+| Nano-Banana | The concept-generation stage used to turn reference images into a world model prompt for Marble. |
+| Next.js | A React-based framework for building fast web applications, with server-side rendering and static site generation. |
+| Private subnet | A network segment in AWS that does not allow direct public internet access, making backend services harder to reach from outside. |
+| Quantum world model | A visual, explorable representation of a quantum computer architecture, designed to make abstract quantum behavior more intuitive. |
+| S3 | AWS Simple Storage Service, used here to store CloudFront access logs and static assets securely. |
+| TLS | Transport Layer Security, the protocol that encrypts web traffic between the browser and CloudFront. |
+| VPC | Virtual Private Cloud, an isolated network environment inside AWS that contains the application’s subnets and security controls. |
+| World Labs | The company and generative platform behind Marble, which provides the streamed 3D scenes for each device architecture. |
+
+---
+
+## �🛡️ Security Model
 
 | Layer | Mechanism |
 |---|---|
