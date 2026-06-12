@@ -36,6 +36,31 @@
 
 > **Quantum Cinema** turns hidden quantum hardware into a cinematic browser experience. It combines generative world models, AWS Braket device metrics, and a guided four-step interface to support science communication and academic reproducibility.
 
+---
+
+## 🚀 Experience It Live
+
+[![Quantum Cinema Live Demo — 2025 Nobel Prize in Physics page showing John Clarke, Michel Devoret, and John Martinis](docs/assets/quantum-cinema-hero.png)](https://d3ospai7r368nk.cloudfront.net/)
+
+**[🎬 Launch Live Demo →](https://d3ospai7r368nk.cloudfront.net/)**
+
+A cinematic four-step journey: Nobel Prize → World Models → Explore → Compare.
+Zero install. Zero hardware. Just a browser.
+
+---
+
+## 📊 Project Introduction
+
+New to Quantum Cinema? Start with the introductory slides:
+
+[![Quantum Cinema Introduction Slides — project overview on Gamma](docs/assets/quantum-cinema-slides.png)](https://quantum-cinema-7gibt1n.gamma.site/)
+
+**[🎓 View Introduction Slides →](https://quantum-cinema-7gibt1n.gamma.site/)**
+
+Covers the imagination gap, quantum phenomena, the four-act experience, and technical architecture.
+
+---
+
 </div>
 
 ---
