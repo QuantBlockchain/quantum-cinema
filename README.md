@@ -39,7 +39,13 @@
 </div>
 
 ---
-<a id="overview"></a>## Overview
+<a id="overview"></a>
+
+## Overview
+
+![Quantum Cinema teaser — scientific world models meet cinematic storytelling](docs/world-models/ion-trap/ion-trap-screenshots/ion-1.jpg)
+
+*A science-meets-art preview frame from the Quantum Cinema world-model pipeline, illustrating the project’s focus on quantum hardware, narrative visualization, and frontier research communication.*
 
 Quantum Cinema is a reproducible software artifact for academic publication. It demonstrates how immersive, browser-based visualizations can make quantum device architecture and performance legible to a broad audience.
 
@@ -53,6 +59,7 @@ Quantum Cinema is a reproducible software artifact for academic publication. It 
 - `CITATION.cff` — citation metadata for academic use
 
 <a id="features"></a>
+
 ## Features
 
 - Four-act immersive narrative flow: Nobel Prize → video showcase → world model → comparison
@@ -62,6 +69,7 @@ Quantum Cinema is a reproducible software artifact for academic publication. It 
 - Paper-ready artifact with reproducibility and citation metadata
 
 <a id="world-models-documentation"></a>
+
 ## World Models Documentation
 
 The world-model documentation is located under `docs/world-models/` and includes the three technical note categories requested by the engineering team:
@@ -89,29 +97,22 @@ Captured still frames and videos are also available for all three platforms:
 
 ### Sample World-Model Videos
 
-Read the ion-trap generation pipeline in [Ion-trap world creation: How the final world model was generated](https://github.com/QuantBlockchain/quantum-cinema/blob/main/docs/world-models/ion-trap/how-to-create-world.md#how-the-final-world-model-was-generated).
+The following table presents each platform’s creation pipeline documentation, a preview video embed, and a representative captured frame.
 
-<figure style="display:inline-block; margin: 0 12px 12px 0; text-align:center; width:320px;">
-  <video autoplay muted loop playsinline width="320" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
-    <source src="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/docs/world-models/ion-trap/ionq-world-explore.mp4" type="video/mp4">
+| Platform | Creation pipeline | Preview | Sample frame |
+|---|---|---|---|
+| **Ion-trap** | [How the final world model was generated](docs/world-models/ion-trap/how-to-create-world.md#how-the-final-world-model-was-generated) | <video autoplay muted loop playsinline width="260" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
+    <source src="docs/world-models/ion-trap/ionq-world-explore.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
-  </video>
-  <figcaption style="font-size:0.9rem; margin-top:8px;">Ion-trap world exploration (autoplay preview)</figcaption>
-</figure>
-<figure style="display:inline-block; margin: 0 12px 12px 0; text-align:center; width:320px;">
-  <video controls muted loop playsinline width="320" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
-    <source src="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/docs/world-models/superconducting/superconducting-world-explore.mp4" type="video/mp4">
+  </video> | ![Ion-trap screenshot](docs/world-models/ion-trap/ion-trap-screenshots/ion-1.jpg) |
+| **Superconducting** | [Superconducting world creation](docs/world-models/superconducting/how-to-create-world.md) | <video controls muted loop playsinline width="260" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
+    <source src="docs/world-models/superconducting/superconducting-world-explore.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
-  </video>
-  <figcaption style="font-size:0.9rem; margin-top:8px;">Superconducting world exploration</figcaption>
-</figure>
-<figure style="display:inline-block; margin: 0 12px 12px 0; text-align:center; width:320px;">
-  <video controls muted loop playsinline width="320" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
-    <source src="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/docs/world-models/neutral-atoms/quera.mp4" type="video/mp4">
+  </video> | ![Superconducting screenshot](docs/world-models/superconducting/superconducting-screenshots/super-1.jpg) |
+| **Neutral-atom** | [Neutral-atom world creation](docs/world-models/neutral-atoms/how-to-create-world.md) | <video controls muted loop playsinline width="260" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
+    <source src="docs/world-models/neutral-atoms/quera.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
-  </video>
-  <figcaption style="font-size:0.9rem; margin-top:8px;">Neutral-atom world exploration</figcaption>
-</figure>
+  </video> | ![Neutral-atom screenshot](docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-1.jpg) |
 
 ## Quick Start
 
@@ -389,9 +390,37 @@ The core lesson of the Comparison act: **you cannot optimize all six at once.** 
 ├── design/
 │   └── design.md                       # research and design rationale
 ├── docs/
-│   ├── en/                             # English design and usage docs
-│   ├── zh/                             # Chinese design and usage docs
-│   └── world-models/                   # world-model creation pipeline and assets
+│   ├── en/
+│   │   ├── architecture.md            # architecture overview and deployment notes
+│   │   ├── local-development.md       # local setup and development guide
+│   │   ├── requirements.md            # functional and non-functional requirements
+│   │   └── user-experience/
+│   │       └── Readme.md              # UX flow, screens, and glossary
+│   ├── zh/
+│   │   ├── architecture.md            # Chinese architecture overview
+│   │   ├── local-development.md       # Chinese local development guide
+│   │   ├── requirements.md            # Chinese requirements document
+│   │   └── user-experience/
+│   │       └── Readme.md              # Chinese UX flow and glossary
+│   └── world-models/
+│       ├── README.md                  # summary of the world-model documentation package
+│       ├── architectural-contrast.md  # cross-platform world-model comparison
+│       ├── significance-analysis.md   # AWS Braket parameter analysis and metrics
+│       ├── ion-trap/
+│       │   ├── how-to-create-world.md
+│       │   ├── teaching-guide.md
+│       │   ├── ion-trap-screenshots/
+│       │   └── ionq-world-explore.mp4
+│       ├── superconducting/
+│       │   ├── how-to-create-world.md
+│       │   ├── teaching-guide.md
+│       │   ├── superconducting-screenshots/
+│       │   └── superconducting-world-explore.mp4
+│       └── neutral-atoms/
+│           ├── how-to-create-world.md
+│           ├── teaching-guide.md
+│           ├── neutral-atom-screenshots/
+│           └── quera.mp4
 ├── lib/
 │   └── qc-worldlabs-stack.ts           # AWS CDK infrastructure stack
 ├── quantum-cinema/                     # Next.js 16 application
