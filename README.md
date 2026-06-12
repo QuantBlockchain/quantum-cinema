@@ -53,9 +53,9 @@
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:center;padding:8px;"><a href="docs/world-models/ion-trap/ion-trap-screenshots/ion-1.jpg"><img src="docs/world-models/ion-trap/ion-trap-screenshots/ion-1.jpg" alt="Ion 1" width="220" style="border:1px solid #ddd;border-radius:6px;"/></a></td>
-      <td style="text-align:center;padding:8px;"><a href="docs/world-models/superconducting/superconducting-screenshots/super-1.jpg"><img src="docs/world-models/superconducting/superconducting-screenshots/super-1.jpg" alt="Super 1" width="220" style="border:1px solid #ddd;border-radius:6px;"/></a></td>
-      <td style="text-align:center;padding:8px;"><a href="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-1.jpg"><img src="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-1.jpg" alt="Atom 1" width="220" style="border:1px solid #ddd;border-radius:6px;"/></a></td>
+      <td style="text-align:center;padding:8px;"><a href="docs/world-models/ion-trap/ion-trap-screenshots/ion-1.jpg"><img src="docs/world-models/ion-trap/ion-trap-screenshots/ion-1.jpg" alt="Ion 1" width="220" style="border:1px solid #ddd;border-radius:6px;"/></a><div style="font-size:12px;color:#666;margin-top:6px;">Ion-trap: trapped Yb ions in vacuum</div></td>
+      <td style="text-align:center;padding:8px;"><a href="docs/world-models/superconducting/superconducting-screenshots/super-1.jpg"><img src="docs/world-models/superconducting/superconducting-screenshots/super-1.jpg" alt="Super 1" width="220" style="border:1px solid #ddd;border-radius:6px;"/></a><div style="font-size:12px;color:#666;margin-top:6px;">Superconducting: cryogenic circuit landscape</div></td>
+      <td style="text-align:center;padding:8px;"><a href="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-1.jpg"><img src="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-1.jpg" alt="Atom 1" width="220" style="border:1px solid #ddd;border-radius:6px;"/></a><div style="font-size:12px;color:#666;margin-top:6px;">Neutral-atom: atoms pinned by optical tweezers</div></td>
     </tr>
     <tr>
       <td style="text-align:center;padding:8px;"><a href="docs/world-models/ion-trap/ion-trap-screenshots/ion-2.jpg"><img src="docs/world-models/ion-trap/ion-trap-screenshots/ion-2.jpg" alt="Ion 2" width="220" style="border:1px solid #ddd;border-radius:6px;"/></a></td>
