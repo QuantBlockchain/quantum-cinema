@@ -43,9 +43,42 @@
 
 ## Overview
 
-![Quantum Cinema teaser — scientific world models meet cinematic storytelling](docs/world-models/ion-trap/ion-trap-screenshots/ion-1.jpg)
+<div style="display:flex;gap:18px;justify-content:center;flex-wrap:wrap;">
+  <div style="text-align:center;min-width:220px">
+    <strong>Ion-trap</strong>
+    <div>
+      <a href="docs/world-models/ion-trap/ion-trap-screenshots/ion-1.jpg"><img src="docs/world-models/ion-trap/ion-trap-screenshots/ion-1.jpg" alt="Ion-trap 1" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+      <a href="docs/world-models/ion-trap/ion-trap-screenshots/ion-2.jpg"><img src="docs/world-models/ion-trap/ion-trap-screenshots/ion-2.jpg" alt="Ion-trap 2" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+      <a href="docs/world-models/ion-trap/ion-trap-screenshots/ion-3.jpg"><img src="docs/world-models/ion-trap/ion-trap-screenshots/ion-3.jpg" alt="Ion-trap 3" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+      <a href="docs/world-models/ion-trap/ion-trap-screenshots/ion-4.jpg"><img src="docs/world-models/ion-trap/ion-trap-screenshots/ion-4.jpg" alt="Ion-trap 4" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+      <a href="docs/world-models/ion-trap/ion-trap-screenshots/ion-5.jpg"><img src="docs/world-models/ion-trap/ion-trap-screenshots/ion-5.jpg" alt="Ion-trap 5" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+    </div>
+  </div>
 
-*A science-meets-art preview frame from the Quantum Cinema world-model pipeline, illustrating the project’s focus on quantum hardware, narrative visualization, and frontier research communication.*
+  <div style="text-align:center;min-width:220px">
+    <strong>Superconducting</strong>
+    <div>
+      <a href="docs/world-models/superconducting/superconducting-screenshots/super-1.jpg"><img src="docs/world-models/superconducting/superconducting-screenshots/super-1.jpg" alt="Super 1" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+      <a href="docs/world-models/superconducting/superconducting-screenshots/super-2.jpg"><img src="docs/world-models/superconducting/superconducting-screenshots/super-2.jpg" alt="Super 2" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+      <a href="docs/world-models/superconducting/superconducting-screenshots/super-3.jpg"><img src="docs/world-models/superconducting/superconducting-screenshots/super-3.jpg" alt="Super 3" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+      <a href="docs/world-models/superconducting/superconducting-screenshots/super-4.jpg"><img src="docs/world-models/superconducting/superconducting-screenshots/super-4.jpg" alt="Super 4" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+      <a href="docs/world-models/superconducting/superconducting-screenshots/super-5.jpg"><img src="docs/world-models/superconducting/superconducting-screenshots/super-5.jpg" alt="Super 5" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+    </div>
+  </div>
+
+  <div style="text-align:center;min-width:220px">
+    <strong>Neutral-atom</strong>
+    <div>
+      <a href="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-1.jpg"><img src="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-1.jpg" alt="Atom 1" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+      <a href="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-2.jpg"><img src="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-2.jpg" alt="Atom 2" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+      <a href="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-3.jpg"><img src="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-3.jpg" alt="Atom 3" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+      <a href="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-4.jpg"><img src="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-4.jpg" alt="Atom 4" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+      <a href="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-5.jpg"><img src="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-5.jpg" alt="Atom 5" width="220" style="border:1px solid #ddd;border-radius:8px;margin:6px;"/></a>
+    </div>
+  </div>
+</div>
+
+*A science-meets-art preview gallery from the Quantum Cinema world-model pipeline, illustrating the project’s focus on quantum hardware, narrative visualization, and frontier research communication.*
 
 Quantum Cinema is a reproducible software artifact for academic publication. It demonstrates how immersive, browser-based visualizations can make quantum device architecture and performance legible to a broad audience.
 
