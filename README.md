@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎬 Quantum Cinema
+# 🎬 Quantum Cinema [![DOI](https://img.shields.io/badge/Zenodo-10.5281/zenodo.20672252-1687D0?logo=zenodo&logoColor=white)](https://doi.org/10.5281/zenodo.20672252)
 
 ### Making the Invisible Visible Through Generative World Models
 
