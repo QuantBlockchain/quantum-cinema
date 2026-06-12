@@ -39,8 +39,7 @@
 </div>
 
 ---
-
-## Overview
+<a id="overview"></a>## Overview
 
 Quantum Cinema is a reproducible software artifact for academic publication. It demonstrates how immersive, browser-based visualizations can make quantum device architecture and performance legible to a broad audience.
 
@@ -53,6 +52,7 @@ Quantum Cinema is a reproducible software artifact for academic publication. It 
 - `SUPPLEMENTARY.md` — reproducibility and provenance guide
 - `CITATION.cff` — citation metadata for academic use
 
+<a id="features"></a>
 ## Features
 
 - Four-act immersive narrative flow: Nobel Prize → video showcase → world model → comparison
@@ -61,6 +61,7 @@ Quantum Cinema is a reproducible software artifact for academic publication. It 
 - Security controls including ALB secret-header validation and modern HTTP headers
 - Paper-ready artifact with reproducibility and citation metadata
 
+<a id="world-models-documentation"></a>
 ## World Models Documentation
 
 The world-model documentation is located under `docs/world-models/` and includes the three technical note categories requested by the engineering team:
@@ -88,23 +89,25 @@ Captured still frames and videos are also available for all three platforms:
 
 ### Sample World-Model Videos
 
+Read the ion-trap generation pipeline in [Ion-trap world creation: How the final world model was generated](https://github.com/QuantBlockchain/quantum-cinema/blob/main/docs/world-models/ion-trap/how-to-create-world.md#how-the-final-world-model-was-generated).
+
 <figure style="display:inline-block; margin: 0 12px 12px 0; text-align:center; width:320px;">
-  <video controls width="320" preload="metadata">
-    <source src="docs/world-models/ion-trap/ionq-world-explore.mp4" type="video/mp4">
+  <video autoplay muted loop playsinline width="320" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
+    <source src="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/docs/world-models/ion-trap/ionq-world-explore.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
-  <figcaption style="font-size:0.9rem; margin-top:8px;">Ion-trap world exploration</figcaption>
+  <figcaption style="font-size:0.9rem; margin-top:8px;">Ion-trap world exploration (autoplay preview)</figcaption>
 </figure>
 <figure style="display:inline-block; margin: 0 12px 12px 0; text-align:center; width:320px;">
-  <video controls width="320" preload="metadata">
-    <source src="docs/world-models/superconducting/superconducting-world-explore.mp4" type="video/mp4">
+  <video controls muted loop playsinline width="320" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
+    <source src="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/docs/world-models/superconducting/superconducting-world-explore.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
   <figcaption style="font-size:0.9rem; margin-top:8px;">Superconducting world exploration</figcaption>
 </figure>
 <figure style="display:inline-block; margin: 0 12px 12px 0; text-align:center; width:320px;">
-  <video controls width="320" preload="metadata">
-    <source src="docs/world-models/neutral-atoms/quera.mp4" type="video/mp4">
+  <video controls muted loop playsinline width="320" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
+    <source src="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/docs/world-models/neutral-atoms/quera.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
   <figcaption style="font-size:0.9rem; margin-top:8px;">Neutral-atom world exploration</figcaption>
@@ -123,6 +126,7 @@ npm run dev
 
 Then open `http://localhost:3000`.
 
+<a id="reproducibility"></a>
 ## Reproducibility
 
 This repository is structured for academic review. It includes a dedicated guide, CI validation, and citation metadata to support reproducibility.
@@ -131,6 +135,7 @@ This repository is structured for academic review. It includes a dedicated guide
 - `CITATION.cff` — citation metadata for academic use
 - `.github/workflows/ci.yml` — automated frontend and infrastructure validation
 
+<a id="supplementary-material"></a>
 ## Supplementary material
 
 The package is intended as a supplementary artifact for publication. The artifact contains:
@@ -474,7 +479,8 @@ On success, CDK prints three outputs:
 
 ---
 
-## � Glossary
+<a id="glossary"></a>
+## 📖 Glossary
 
 | Term | Explanation |
 |---|---|
@@ -497,7 +503,14 @@ On success, CDK prints three outputs:
 
 ---
 
-## �🛡️ Security Model
+<a id="license"></a>
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for the full terms.
+
+---
+
+## 🛡️ Security Model
 
 | Layer | Mechanism |
 |---|---|
