@@ -103,7 +103,7 @@ The following table presents each platform’s creation pipeline, autoplay previ
       <td><strong>Ion-trap</strong></td>
       <td><a href="docs/world-models/ion-trap/how-to-create-world.md#how-the-final-world-model-was-generated">How the final world model was generated</a></td>
       <td>
-        <a href="/videos/ionq-world-explore.mp4">
+        <a href="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/quantum-cinema/public/videos/ionq-world-explore.mp4" target="_blank" rel="noopener">
           <img src="docs/world-models/ion-trap/ion-trap-screenshots/ion-1.jpg" alt="Ion-trap preview" width="260" style="border:1px solid #ddd; border-radius:8px;" />
         </a>
         <div style="font-size:12px;color:#666;margin-top:6px;">Click thumbnail to open hosted MP4 preview</div>
@@ -114,7 +114,7 @@ The following table presents each platform’s creation pipeline, autoplay previ
       <td><strong>Superconducting</strong></td>
       <td><a href="docs/world-models/superconducting/how-to-create-world.md">How the final world model was generated</a></td>
       <td>
-        <a href="/videos/superconducting-world-explore.mp4">
+        <a href="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/quantum-cinema/public/videos/superconducting-world-explore.mp4" target="_blank" rel="noopener">
           <img src="docs/world-models/superconducting/superconducting-screenshots/super-1.jpg" alt="Superconducting preview" width="260" style="border:1px solid #ddd; border-radius:8px;" />
         </a>
         <div style="font-size:12px;color:#666;margin-top:6px;">Click thumbnail to open hosted MP4 preview</div>
@@ -125,7 +125,7 @@ The following table presents each platform’s creation pipeline, autoplay previ
       <td><strong>Neutral-atom</strong></td>
       <td><a href="docs/world-models/neutral-atoms/how-to-create-world.md">How the final world model was generated</a></td>
       <td>
-        <a href="/videos/quera.mp4">
+        <a href="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/quantum-cinema/public/videos/quera.mp4" target="_blank" rel="noopener">
           <img src="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-1.jpg" alt="Neutral-atom preview" width="260" style="border:1px solid #ddd; border-radius:8px;" />
         </a>
         <div style="font-size:12px;color:#666;margin-top:6px;">Click thumbnail to open hosted MP4 preview</div>
