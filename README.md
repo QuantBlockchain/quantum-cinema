@@ -4,6 +4,13 @@
 
 ### Making the Invisible Visible Through Generative World Models
 
+[![CI](https://github.com/QuantBlockchain/quantum-cinema/actions/workflows/ci.yml/badge.svg)](https://github.com/QuantBlockchain/quantum-cinema/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev/)
+[![AWS CDK](https://img.shields.io/badge/AWS%20CDK-TypeScript-232F3E?logo=amazonaws)](https://aws.amazon.com/cdk/)
+[![Supplementary material](https://img.shields.io/badge/Supplementary-ready-green)](SUPPLEMENTARY.md)
+
 <p>
   <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js 16" /></a>
   <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 19" /></a>
@@ -14,20 +21,98 @@
 </p>
 
 <p>
-  <a href="#-research-context">Research Context</a> ·
-  <a href="#-overview">Overview</a> ·
-  <a href="#-the-four-act-experience">The Experience</a> ·
-  <a href="#-the-three-worlds">The Three Worlds</a> ·
-  <a href="#-architecture">Architecture</a> ·
-  <a href="#-quick-start">Quick Start</a> ·
-  <a href="#-future-research">Future Research</a>
+  <a href="#overview">Overview</a> ·
+  <a href="#features">Features</a> ·
+  <a href="#architecture">Architecture</a> ·
+  <a href="#quick-start">Quick Start</a> ·
+  <a href="#reproducibility">Reproducibility</a> ·
+  <a href="#supplementary-material">Supplementary material</a> ·
+  <a href="#license">License</a>
 </p>
 
 ---
 
-> **Quantum Cinema** turns invisible quantum hardware into a cinematic, browsable experience. Real quantum processors — trapped ions, superconducting circuits, and neutral atoms on AWS Braket — are reimagined as **generative world models**: immersive 3D "worlds" that are not *filmed* but *dreamed* by AI. Decoherence, laser cooling, and energy loss become things you can **watch happen**, conditioned on real device characteristics. No headset. No PhD. No live quantum hardware. Just a browser and curiosity.
+> **Quantum Cinema** turns hidden quantum hardware into a cinematic browser experience. It combines generative world models, AWS Braket device metrics, and a guided four-step interface to support science communication and academic reproducibility.
 
 </div>
+
+---
+
+## Overview
+
+Quantum Cinema is a reproducible software artifact for academic publication. It demonstrates how immersive, browser-based visualizations can make quantum device architecture and performance legible to a broad audience.
+
+### What this repository includes
+
+- `quantum-cinema/` — Next.js 16 application
+- `lib/` — AWS CDK infrastructure definition
+- `bin/` — CDK deploy entrypoint
+- `.github/workflows/ci.yml` — automated validation workflow
+- `SUPPLEMENTARY.md` — reproducibility and provenance guide
+- `CITATION.cff` — citation metadata for academic use
+
+## Features
+
+- Four-act immersive narrative flow: Nobel Prize → video showcase → world model → comparison
+- Generative world models that map to three real AWS Braket device architectures
+- AWS deployment with ECS Fargate, ALB, and CloudFront
+- Security controls including ALB secret-header validation and modern HTTP headers
+- Paper-ready artifact with reproducibility and citation metadata
+
+## World Models Documentation
+
+The world-model documentation is located under `docs/world-models/` and includes the three technical note categories requested by the engineering team:
+
+- creation pipeline documentation (reference images, Nano-Banana concept generation, Marble 3D world creation)
+- teaching story assets and screenshot galleries that explain the visual metaphors and entanglement behavior
+- parameter analysis and cross-device comparison guidance using AWS Braket metrics
+
+- `docs/world-models/ion-trap/` — Ion-trap creation pipeline, teaching story, screenshots, and Marble world reference
+- `docs/world-models/superconducting/` — Superconducting creation pipeline, teaching story, screenshots, and Marble world reference
+- `docs/world-models/neutral-atoms/` — Neutral-atom creation pipeline, teaching story, screenshots, and Marble world reference
+- `docs/world-models/architectural-contrast.md` — cross-platform summary of the three world-model approaches
+- `docs/world-models/significance-analysis.md` — AWS Braket parameter analysis, conveyed metrics, future directions, and cross-device comparison guidance
+- `docs/world-models/README.md` — summary of the world-model documentation package
+
+### Sample world-model assets
+
+![Ion-trap screenshot](docs/world-models/ion-trap/ion-trap-screenshots/ion-1.jpg)
+
+Captured still frames and videos are also available for all three platforms:
+
+- `docs/world-models/ion-trap/ion-trap-screenshots/` + `docs/world-models/ion-trap/ionq-world-explore.mp4`
+- `docs/world-models/superconducting/superconducting-screenshots/` + `docs/world-models/superconducting/superconducting-world-explore.mp4`
+- `docs/world-models/neutral-atoms/neutral-atom-screenshots/` + `docs/world-models/neutral-atoms/quera.mp4`
+
+## Quick Start
+
+```bash
+git clone https://github.com/QuantBlockchain/quantum-cinema.git
+cd quantum-cinema
+npm ci
+cd quantum-cinema
+npm ci
+npm run dev
+```
+
+Then open `http://localhost:3000`.
+
+## Reproducibility
+
+This repository is structured for academic review. It includes a dedicated guide, CI validation, and citation metadata to support reproducibility.
+
+- `SUPPLEMENTARY.md` — reproducibility and provenance guide
+- `CITATION.cff` — citation metadata for academic use
+- `.github/workflows/ci.yml` — automated frontend and infrastructure validation
+
+## Supplementary material
+
+The package is intended as a supplementary artifact for publication. The artifact contains:
+
+- reproducible build and deployment workflow
+- deployment infrastructure defined as AWS CDK
+- explicit academic citation metadata
+- evidence of environment and provenance documentation
 
 ---
 

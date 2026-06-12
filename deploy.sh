@@ -13,7 +13,7 @@ aws sts get-caller-identity > /dev/null 2>&1 || {
 }
 
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-REGION=${AWS_DEFAULT_REGION:-us-east-1}
+REGION=${AWS_DEFAULT_REGION:-us-west-2}
 echo "Account: $ACCOUNT_ID"
 echo "Region: $REGION"
 

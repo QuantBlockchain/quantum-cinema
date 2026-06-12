@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "Quantum Cinema"
+authors:
+  - family-names: "QuantBlockchain"
+    given-names: "Quantum Cinema Team"
+version: "0.1.0"
+message: "If you use this software in a publication, please cite it."
+doi: ""
+url: "https://github.com/QuantBlockchain/quantum-cinema"
+date-released: "2026-06-12"
