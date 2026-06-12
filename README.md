@@ -87,32 +87,59 @@ The world-model documentation is located under `docs/world-models/` and includes
 
 ### Sample world-model assets
 
-![Ion-trap screenshot](docs/world-models/ion-trap/ion-trap-screenshots/ion-1.jpg)
+The following table presents each platform’s creation pipeline, autoplay preview video, and representative captured frame.
 
-Captured still frames and videos are also available for all three platforms:
+<table>
+  <thead>
+    <tr>
+      <th>Platform</th>
+      <th>Creation pipeline</th>
+      <th>Autoplay preview</th>
+      <th>Sample frame</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Ion-trap</strong></td>
+      <td><a href="docs/world-models/ion-trap/how-to-create-world.md#how-the-final-world-model-was-generated">How the final world model was generated</a></td>
+      <td>
+        <video autoplay muted loop playsinline width="260" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
+          <source src="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/docs/world-models/ion-trap/ionq-world-explore.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </td>
+      <td><img src="docs/world-models/ion-trap/ion-trap-screenshots/ion-1.jpg" alt="Ion-trap screenshot" width="260" style="border:1px solid #ddd; border-radius:8px;" /></td>
+    </tr>
+    <tr>
+      <td><strong>Superconducting</strong></td>
+      <td><a href="docs/world-models/superconducting/how-to-create-world.md">How the final world model was generated</a></td>
+      <td>
+        <video autoplay muted loop playsinline width="260" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
+          <source src="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/docs/world-models/superconducting/superconducting-world-explore.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </td>
+      <td><img src="docs/world-models/superconducting/superconducting-screenshots/super-1.jpg" alt="Superconducting screenshot" width="260" style="border:1px solid #ddd; border-radius:8px;" /></td>
+    </tr>
+    <tr>
+      <td><strong>Neutral-atom</strong></td>
+      <td><a href="docs/world-models/neutral-atoms/how-to-create-world.md">How the final world model was generated</a></td>
+      <td>
+        <video autoplay muted loop playsinline width="260" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
+          <source src="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/docs/world-models/neutral-atoms/quera.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </td>
+      <td><img src="docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-1.jpg" alt="Neutral-atom screenshot" width="260" style="border:1px solid #ddd; border-radius:8px;" /></td>
+    </tr>
+  </tbody>
+</table>
 
-- `docs/world-models/ion-trap/ion-trap-screenshots/` + `docs/world-models/ion-trap/ionq-world-explore.mp4`
-- `docs/world-models/superconducting/superconducting-screenshots/` + `docs/world-models/superconducting/superconducting-world-explore.mp4`
-- `docs/world-models/neutral-atoms/neutral-atom-screenshots/` + `docs/world-models/neutral-atoms/quera.mp4`
+If preview videos do not render in GitHub, open the MP4s directly:
 
-### Sample World-Model Videos
-
-The following table presents each platform’s creation pipeline documentation, a preview video embed, and a representative captured frame.
-
-| Platform | Creation pipeline | Preview | Sample frame |
-|---|---|---|---|
-| **Ion-trap** | [How the final world model was generated](docs/world-models/ion-trap/how-to-create-world.md#how-the-final-world-model-was-generated) | <video autoplay muted loop playsinline width="260" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
-    <source src="docs/world-models/ion-trap/ionq-world-explore.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
-  </video> | ![Ion-trap screenshot](docs/world-models/ion-trap/ion-trap-screenshots/ion-1.jpg) |
-| **Superconducting** | [Superconducting world creation](docs/world-models/superconducting/how-to-create-world.md) | <video controls muted loop playsinline width="260" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
-    <source src="docs/world-models/superconducting/superconducting-world-explore.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
-  </video> | ![Superconducting screenshot](docs/world-models/superconducting/superconducting-screenshots/super-1.jpg) |
-| **Neutral-atom** | [Neutral-atom world creation](docs/world-models/neutral-atoms/how-to-create-world.md) | <video controls muted loop playsinline width="260" preload="metadata" style="border:1px solid #ddd; border-radius:8px;">
-    <source src="docs/world-models/neutral-atoms/quera.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
-  </video> | ![Neutral-atom screenshot](docs/world-models/neutral-atoms/neutral-atom-screenshots/atom-1.jpg) |
+- <a href="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/docs/world-models/ion-trap/ionq-world-explore.mp4">Ion-trap MP4</a>
+- <a href="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/docs/world-models/superconducting/superconducting-world-explore.mp4">Superconducting MP4</a>
+- <a href="https://raw.githubusercontent.com/QuantBlockchain/quantum-cinema/main/docs/world-models/neutral-atoms/quera.mp4">Neutral-atom MP4</a>
 
 ## Quick Start
 
