@@ -50,7 +50,7 @@ The catch: these quantum states are *fragile*. Touch them with the slightest hea
 
 ## 🎓 Research Context
 
-> Submitted toward **ACM International Conference on Multimedia (ACM MM) 2026** — Generative AI · Scientific Communication · Accessible Computing. Full design rationale lives in [`design/design.md`](design/design.md).
+> Full design rationale lives in [`design/design.md`](design/design.md).
 
 ### The Imagination Gap
 
