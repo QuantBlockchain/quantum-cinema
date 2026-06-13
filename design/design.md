@@ -1,173 +1,586 @@
-**QUANTUM CINEMA: MAKING THE INVISIBLE VISIBLE THROUGH GENERATIVE WORLD MODELS**
-
-Target Venue: ACM International Conference on Multimedia (ACM MM) 2026  
-Track: Generative AI / Scientific Communication / Accessible Computing
-
-**ABSTRACT**
-
-Quantum computers promise to revolutionize medicine, climate science, and cryptography-yet they remain locked behind layers of abstraction: hidden in dilution refrigerators, understood only by physicists, and visually indistinguishable from "glorified chandeliers" to the public. This gap between _technological impact_ and _human understanding_ threatens to slow adoption and erode trust in the quantum era.
-
-We present Quantum Cinema, a demonstration that harnesses generative world models-AI systems that learn to predict and simulate physical reality-to transform invisible quantum hardware into immersive, cinematic experiences. Building on recent breakthroughs in 4D scene generation \[1\] and hierarchical world modeling \[2\], we create "digital twins" of AWS Braket quantum architectures (superconducting, trapped-ion, neutral-atom, and simulators) that are not filmed, but _dreamed_ by AI. These videos predict how quantum states evolve over time-showing decoherence, laser cooling, and energy loss as observable visual narratives-conditioned on real device data from the cloud.
-
-By distilling complex quantum mechanics into a simple three-step experience (Choose → Watch → Compare), we democratize access to the quantum future. No headsets, no PhDs, no live infrastructure required-just a browser and curiosity.
-
-**1\. WHY QUANTUM MATTERS: THE IMAGINATION GAP**
-
-**1.1 The Next Industrial Revolution Is Invisible**
-
-Quantum computers represent a fundamental shift in how humanity processes information. Unlike classical computers that use bits (0 or 1), quantum computers use qubits-particles that exist in "superposition" (both 0 and 1 simultaneously)-allowing them to solve problems in hours that would take traditional supercomputers millennia \[3\].
-
-The stakes are enormous:
-
-- Medicine: Simulating molecules to design life-saving drugs in days rather than decades.
-- Climate: Optimizing global energy grids and carbon capture materials.
-- Security: Breaking current encryption standards while creating unhackable quantum networks.
-
-**1.2 The Physics That Makes It Possible (Or fails)**
-
-To understand why quantum computers can solve these problems-and why they are so difficult to build-we must confront three invisible forces that determine whether a quantum computer is a revolutionary tool or an expensive paperweight:
-
-Decoherence: The Enemy of Complexity In the quantum world, information is fragile. _Decoherence_ is the process by which qubits lose their quantum properties-drifting from the delicate state of "both 0 and 1" into the crude certainty of classical "0 or 1" through interaction with their environment. Imagine trying to balance a pencil on its tip; decoherence is the gust of wind that knocks it over.
-
-This matters critically for drug discovery. To simulate a complex molecule like a protein or a new antibiotic, a quantum computer must maintain quantum coherence across hundreds of operations. Current benchmarking shows that coherence times of ~1 millisecond (recently achieved by IQM \[4\]) represent a threshold for useful computational depth, while standard superconducting qubits operate at ~100 microseconds \[5\]. If decoherence strikes too early, the molecular simulation fails mid-computation. Extending coherence times-even by milliseconds-could mean the difference between discovering a cancer treatment in weeks versus never discovering it at all. In our visualization, decoherence appears as a visual "frost" creeping over the quantum circuits or light fading from suspended ions, making the invisible countdown tangible.
-
-Laser Cooling: The Price of Purity Trapped-ion systems (like IonQ on AWS Braket) require _laser cooling_-bombarding atoms with precisely tuned laser beams to slow their thermal vibration to near-motionlessness, effectively reducing their temperature to microkelvins above absolute zero \[6\]. This is the "suspension" in the Light Suspension world: atoms floating in a vacuum, pinned by light rather than matter.
-
-The energy cost is staggering. The lasers and vacuum pumps required to maintain this state consume enormous amounts of electricity-equivalent to powering a small neighborhood for a single quantum processor \[6\]. For climate applications, this creates a paradox: we are developing quantum computers to optimize energy grids and design carbon capture materials, yet the machines themselves are energy-intensive to operate. Understanding this trade-off-visualized in Quantum Cinema through the humming, power-hungry glow of laser arrays versus the serene stillness they create-is essential for determining when quantum advantage truly benefits sustainability.
-
-Energy Loss: The Heat of Thought Superconducting quantum computers (like Rigetti's systems) battle a different demon: _energy loss_ in the form of heat dissipation. These systems use Josephson junctions-superconducting circuits that carry current without resistance-but only when chilled to millikelvin temperatures by dilution refrigerators \[6\]. Any heat leakage, any electromagnetic interference, any imperfection in the cryogenic shielding causes energy loss that destroys quantum information \[7\].
-
-This energy loss directly limits the complexity of climate optimization problems we can solve. Recent benchmarking frameworks emphasize that error rates and coherence times must be evaluated together to determine usable computational capability \[8\]\[9\]. To optimize a national power grid or simulate novel battery materials, the quantum computer must process thousands of variables without losing energy (and thus information) to the environment. The "Frozen Forge" visualization makes this struggle visceral: golden circuitry encased in frost, with energy visualized as light leaking away into the darkness, representing the precious quantum information lost to heat.
-
-**CHEAT SHEET: The Metrics That Matter**
-
-| The Metric     | What It Means (Simple)                                                                                                            | Why It Matters for Real-World Impact                                                                                                                                                                                                                                                                                       |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Coherence Time | How long a qubit stays "quantum" before environmental noise destroys its superposition (like a pencil balancing on its tip) \[5\] | Drug simulations require maintaining quantum states across hundreds of operations. Short coherence = simulation crashes before finding the cure. Grid optimization needs processing thousands of variables simultaneously; if coherence is lost mid-computation, the optimal energy solution is never found \[4\]\[8\].    |
-| Gate Fidelity  | Accuracy of quantum operations (like a surgeon's steady hand). 99.9% = 1 error per 1000 operations \[4\]                          | Accumulated errors from low fidelity produce nonsense molecular structures in drug discovery, missing therapeutic targets. In climate optimization, errors cause convergence failure, yielding energy grids that waste power rather than optimize it \[9\].                                                                |
-| Connectivity   | How many other qubits each qubit can directly "talk to" (like friends in a social network)                                        | Protein folding involves long-range molecular interactions; limited connectivity forces inefficient workarounds that introduce errors. Grid optimization requires modeling geographically distributed variables; poor connectivity increases computational steps, hitting coherence limits before finding solutions \[8\]. |
-| Error Rate     | Frequency of random bit-flips caused by noise (like static on a radio) \[7\]                                                      | High error rates (>1%) require quantum error correction that demands 1000+ physical qubits per logical qubit. Current devices cannot yet implement full error correction for drug-sized problems, limiting us to small molecules only \[9\].                                                                               |
-| Energy Cost    | Power consumed to maintain quantum states (lasers for ions, cryogenics for superconductors) \[6\]                                 | Energy-intensive cooling limits the scale of quantum data centers that can economically run drug discovery, affecting medicine prices. For climate applications, the carbon footprint of the quantum computer itself must be offset by its optimization gains to achieve true environmental benefit \[6\].                 |
-
-**2\. THE THREE-STAGE EXPERIENCE: GENERATIVE WORLD MODELS AS CINEMA**
-
-**2.1 Design Philosophy: Multi-Modal Generation of Scientific Reality**
-
-Unlike traditional documentaries that capture existing reality with cameras, _Quantum Cinema_ synthesizes reality through multi-modal conditioned generative world models \[17\]\[18\]. The system ingests two distinct input modalities: (1) semantic descriptions (natural language prompts of quantum hardware interiors) and (2) physical telemetry (JSON data streams from AWS Braket including coherence times , gate fidelities, and error rates). These multi-modal inputs condition state-of-the-art video diffusion world models (Sora-class, Runway Gen-3, Wan 2.1) to generate predictive 4D spatio-temporal trajectories-cinematic visualizations of quantum physics that exist nowhere in the physical world, yet behave according to physical law \[1\]\[17\]\[18\].
-
-This approach leverages recent breakthroughs in 4D scene generation \[1\] and 3D world modeling \[18\], repurposing them from entertainment to scientific epistemology. The world model functions not as a playback engine for recorded footage, but as a neural simulator: it learns the underlying dynamics of quantum systems and generates novel viewpoints, temporal evolutions, and physical interactions that have never been filmed.
-
-Our three-stage interaction flow (Select → Watch → Compare) is grounded in established theories of multimedia learning and cognitive scaffolding \[10\]\[11\]. Stage 1 (Choose) lowers the barrier to entry through affective engagement, leveraging the observation that emotional investment precedes cognitive investment in learning environments \[12\]. Stage 2 (Watch) facilitates narrative transportation, exploiting the human capacity for learning through storytelling where information conveyed via narrative is retained more effectively than declarative exposition \[13\]. Stage 3 (Compare) enables constructive learning through contrast, fostering relational understanding by recognizing how quantum architectures differ along continua of speed, stability, and energy \[14\]. This progression respects the modality principle \[11\]: visual channels process the world model imagery while verbal channels (narration and data overlays) provide scientific grounding, preventing cognitive overload that would occur if both competed for visual attention \[10\].
-
-**2.2 Stage 1: The Quantum Arcade (Multi-Modal Conditioning)**
-
-Upon entry, visitors encounter three living portals-each a short predictive rollout generated by the world model from multi-modal conditioning specific to that AWS Braket device.
-
-The world model generates these atmospheres by cross-referencing text prompts ("cryogenic dilution refrigerator," "laser-trapped ion vacuum chamber") with numerical hardware parameters. The IonQ Aria portal shows atoms floating in harmonic suspension, the world model having interpreted the high-fidelity, long-coherence JSON metrics as visual "serenity" and optical stability. The Rigetti Ankaa-3 portal pulses with frenetic energy and subtle visual static, the world model translating rapid gate speeds and higher error rates into kinetic aesthetic and noise artifacts. The QuEra Aquila portal ripples with interference patterns, the model rendering the analog Hamiltonian simulation parameters as wave-like environmental dynamics.
-
-Users select not by reading specifications, but by intuitive response to the generated aesthetic-each portal representing a distinct physical "world" synthesized by the AI from quantum mechanical first principles. This design follows progressive disclosure principles \[15\]: rather than overwhelming users with technical complexity immediately, we invite exploration through visual affinity, triggering curiosity-driven learning rather than obligation-driven study.
-
-**2.3 Stage 2: The Documentary (Long-Horizon World Simulation)**
-
-The screen transforms into an immersive long-horizon world model rollout-a three-minute predictive simulation of the selected quantum architecture's interior and temporal evolution.
-
-The Impossible Camera flies through spaces no physical lens could survive, the world model generating consistent 3D geometry from sparse views and text description, then navigating that learned space with cinematic fluidity \[1\]\[18\]. This leverages the world model's capacity for novel view synthesis, creating camera trajectories impossible in physical reality (inside dilution refrigerator shields, between laser beams) while maintaining photometric consistency.
-
-The Life of a Qubit unfolds as parameter-driven temporal prediction. The world model generates the visual "decay" of quantum coherence not as artistic flourish, but as direct numerical simulation: the speed of frost creeping over circuitry or light leaking from suspended atoms is determined by the actual coherence time (in microseconds or seconds) pulled from AWS Braket's calibration data. High error rates manifest as generative noise patterns (visual static, glitch artifacts) emerging from the model's latent space when conditioned on low-fidelity metrics. This addresses the curse of knowledge in quantum education \[16\]: experts intuit how error rates affect computation, but novices cannot; the generated visualization makes these effects immediately perceptible as environmental degradation.
-
-The Algorithm sequence shows variational quantum optimization executing within the generated environment, where convergence or failure is visually predicted by the world model based on the hardware's gate fidelity and connectivity constraints. Throughout, a subtle data overlay reveals the conditioning signals-the real coherence times, fidelity percentages, and error rates from Braket that forced the world model to generate this specific visual future rather than another, grounding the dream in scientific reality.
-
-**2.4 Stage 3: The Mirror (Counterfactual World Comparison)**
-
-In the final stage, visitors witness parallel counterfactual simulations-two world model rollouts executing simultaneously based on different hardware initial conditions, enabling scaffolded learning through direct comparison \[14\].
-
-The system conditions two instances of the generative model on different AWS Braket parameter sets (e.g., IonQ's long coherence/low speed versus Rigetti's short coherence/high speed) and generates divergent cinematic futures from the same quantum algorithm starting point. The side-by-side view reveals how the identical computational goal-simulating a molecular bond or optimizing a grid-unfolds through radically different physical realities.
-
-Speed versus Stability becomes visible as temporal compression: the world model generates the Rigetti simulation with rapid cuts and energetic motion, while the IonQ simulation unfolds with languid, sustained coherence. Noise versus Silence appears as generated atmospheric conditions: one world model prediction shows clear crystalline structure (high fidelity conditioning), while the other shows storm-like static interference (high error rate conditioning). Energy versus Cold manifests through the world model's color temperature and luminosity predictions-warm, humming intensity for laser-powered systems versus cold, efficient austerity for cryogenic systems.
-
-By comparing these parallel generated worlds, users intuit the engineering tradeoffs that quantum scientists navigate, understanding through visual prediction and structure mapping \[14\] rather than mathematical abstraction. The comparison makes hardware limitations viscerally apparent: why drug discovery requires the stability of ion traps, why grid optimization demands the speed of superconductors, and why current devices remain limited by the fundamental physics visualized in the generated environments.
-
-**2.5 Multi-Modal Generation Pipeline Summary**
-
-The following table summarizes how multi-modal inputs condition generative world models to produce the multimedia experiences at each stage:
-
-| Stage                       | Multi-Modal Input                                                                                                                                                        | Generative World Model                                                                                        | Output Multimedia                                                                                                                                                                      |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Stage 1: The Quantum Arcade | Text: Short descriptions ("cryogenic lattice," "suspended ions") <br>Data: Key AWS Braket metrics (coherence range, fidelity class)                                      | Short-Horizon Text-to-Video World Model <br>(Runway Gen-3 Turbo, Pika 1.5)                                    | Living Portals: 5-second looping video clips (WebM, 500KB) and static poster frames (WebP) that breathe/morph based on device physics                                                  |
-| Stage 2: The Documentary    | Text: Detailed cinematic prompts ("impossible camera flythrough dilution refrigerator") <br>Data: Full telemetry (exact μs, fidelity %, error rates, connectivity graph) | Long-Horizon Video Diffusion World Model <br>(Sora-class, Wan 2.1-14B, Runway Gen-3 Alpha)                    | Cinematic Documentary: 3-4 minute 1080p MP4 with generative camera movements, physics-based decoherence visualization, and algorithm simulation synchronized to real device parameters |
-| Stage 3: The Mirror         | Text: Comparative prompts ("same VQE algorithm, different hardware") <br>Data: Dual JSON streams (Device A vs. B: coherence, speed, error spectra)                       | Paired Counterfactual World Model Instances <br>(Parallel generation with shared random seed for consistency) | Split-Screen Comparison: Two synchronized 1080p video streams with differential visual layers (noise opacity, color temperature, temporal compression) highlighting physical tradeoffs |
-
-**3\. AWS Braket Device Comparison**
-
-**Table 1: The Quantum Hardware Landscape**
-
-| Device          | Core Technology                                                | Critical Limitation                                                                                                |
-| --------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| IonQ Aria       | Ytterbium ions levitated in vacuum and manipulated by lasers   | Extremely slow operation speeds (gates take ~10-50 microseconds) limit computational depth despite long coherence  |
-| Rigetti Ankaa-3 | Superconducting circuits chilled to near absolute zero (~10mK) | Fragile quantum states decay in ~20-100 microseconds (1000× faster than ions), requiring extremely fast operations |
-| QuEra Aquila    | Neutral atoms arranged by optical tweezers at room temperature | Limited to specific "analog" quantum simulations; cannot easily run general digital algorithms like factoring      |
-
-**Table 2: Matching Hardware to Humanity's Challenges**
-
-| What You're Trying to Solve                        | Best Braket Option | The Hard Reality                                                                                                                                                                                                      |
-| -------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Discover new drugs (small molecules)               | IonQ Aria          | High fidelity prevents errors in molecular simulation, but limited to ~20-100 qubits-insufficient for complex proteins. Full drug discovery awaits error-corrected quantum computers with 1000+ logical qubits \[9\]. |
-| Optimize national power grids                      | Rigetti Ankaa-3    | Fast gates allow rapid optimization iterations, but 100-microsecond coherence limits problem size to toy models. Real grids require handling millions of variables-far beyond current NISQ capabilities \[8\].        |
-| Design carbon capture materials                    | QuEra Aquila       | Native analog simulation matches the physics of materials science naturally, but limited to specific Hamiltonians. General-purpose material discovery requires digital quantum computers not yet available \[9\].     |
-
-**4\. WHY THIS CHANGES EVERYTHING**
-
-Democratizing the Quantum Future By reducing the barrier to understanding from "years of physics study" to "three minutes of video," we enable policymakers, students, artists, and engineers to participate in the quantum revolution. The system requires no VR headsets, no supercomputers, and no live quantum queues-just a browser and an internet connection.
-
-Authenticity Through Prediction Unlike artistic animations, these visualizations are constrained by real physics. The world model must respect the coherence times, error rates, and Hamiltonian dynamics of the actual AWS Braket devices. This creates a new genre of media: predictive documentary-films of events that haven't happened yet, but could, grounded in quantum mechanical truth.
-
-A New Language for Science We demonstrate that generative AI is not merely a tool for creating cat videos or deepfakes, but a new instrument for scientific communication-a way to visualize the 99% of reality (quantum, atomic, cosmological) that lies beyond human perception.
-
-**REFERENCES**
-
-\[1\] Xing, Y., Han, Y., Wang, Y., Li, W., Li, G., Zhang, J., & Zhou, W. (2025). TiP4GEN: Text to Immersive Panorama 4D Scene Generation. _Proceedings of the 33rd ACM International Conference on Multimedia (MM '25)_.  
-<https://doi.org/10.1145/3746027.3755239>
-
-\[2\] Dong, H., Yin, F., Wei, Y., & Yang, Y. (2025). HiScene: Creating Hierarchical 3D Scenes with Isometric View Generation. _Proceedings of the 33rd ACM International Conference on Multimedia (MM '25)_.  
-<https://doi.org/10.1145/3746027.3755240>
-
-\[3\] Zable, A., van Brummelen, J., de Silva, A., Bhattacharya, U., Rahman, S. M. R., & El Saddik, A. (2020). Investigating Immersive Virtual Reality as an Educational Tool for Quantum Computing. _ACM Symposium on Virtual Reality Software and Technology (VRST)_, 1-11.  
-<https://dl.acm.org/doi/10.1145/3385956.3418957>
-
-\[4\] IQM Quantum Computers. (2024). IQM Quantum Computers achieves new technology milestones with 99.9% 2-qubit gate fidelity and 1 millisecond coherence time.  
-<https://meetiqm.com/press-releases/iqm-quantum-computers-achieves-new-technology-milestones-with-99-9-2-qubit-gate-fidelity-and-1-millisecond-coherence-time/>
-
-\[5\] SpinQ. (2025). Ultimate Guide to Coherence Time: Everything You Need to Know.  
-<https://www.spinquanta.com/news-detail/ultimate-guide-to-coherence-time>
-
-\[6\] BlueQubit. (2025). How Does Quantum Computing Work? All You Need to Know.  
-<https://www.bluequbit.io/how-does-quantum-computing-work>
-
-\[7\] Unitary Fund. (2023). Making quantum error mitigation practical.  
-<https://unitary.foundation/posts/2023_qem/>
-
-\[8\] Georgopoulos, K. (2022). Benchmarking Quantum Computers. _PhD Thesis, Newcastle University_.  
-<https://theses.ncl.ac.uk/jspui/bitstream/10443/5820/1/Georgopoulos%20K%202022.pdf>
-
-\[9\] Zhang, S., et al. (2024). Near-term quantum computing techniques: Variational quantum algorithms, error mitigation, circuit compilation, benchmarking and classical simulation. _National Science Review_.  
-<https://www.sciengine.com/doi/pdf/8BC2094B265D436C958A88C5855E5FC5>
-
-\[10\] Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. _Cognitive Science_, 12(2), 257-285.
-
-\[11\] Mayer, R. E. (2009). Multimedia Learning (2nd ed.). Cambridge University Press.
-
-\[12\] Dede, C. (2009). Immersive interfaces for engagement and learning. _Science_, 323(5910), 66-69.
-
-\[13\] Green, M. C., & Brock, T. C. (2000). The role of transportation in the persuasiveness of public narratives. _Journal of Personality and Social Psychology_, 79(5), 701-721.
-
-\[14\] Gentner, D., & Markman, A. B. (1997). Structure mapping in analogy and similarity. _American Psychologist_, 52(1), 45-56.
-
-\[15\] Nielsen, J. (1994). Heuristic evaluation. In _Usability Inspection Methods_, 25-62.
-
-\[16\] Camerer, C. F., Loewenstein, G., & Weber, M. (1989). The curse of knowledge in economic settings: An experimental analysis. _Journal of Political Economy_, 97(5), 1232-1254.
-
-\[17\] Ding, J., Zhang, Y., Shang, Y., Zhang, Y., Zong, Z., Feng, J., Yuan, Y., Su, H., Li, N., Sukiennik, N., & Xu, F. (2025). Understanding world or predicting future? A comprehensive survey of world models. _ACM Computing Surveys_, 58(3), 1-38.  
-<https://dl.acm.org/doi/pdf/10.1145/3746449>
-
-\[18\] Kong, L., Yang, W., Mei, J., Liu, Y., Liang, A., Zhu, D., Lu, D., et al. (2025). 3D and 4D world modeling: A survey. _arXiv preprint arXiv:2509.07996_.  
-<https://arxiv.org/pdf/2509.07996>
+# Quantum Cinema — Design Document
+
+> **Live Demo:** [d3ospai7r368nk.cloudfront.net](https://d3ospai7r368nk.cloudfront.net/)  
+> **Repo:** `QuantBlockchain/quantum-cinema`  
+> **Purpose:** A cinematic browser experience that makes quantum computing visible through generative world models, AWS Braket device metrics, and a guided four-step exploration of trapped-ion, superconducting, and neutral-atom architectures.
+
+---
+
+## 1. Overview
+
+Quantum Cinema is a single-page interactive web application that guides users through a four-step journey to understand quantum computing hardware. Each step progressively deepens the user's understanding — from Nobel Prize history, to world-model visualizations, to video deep-dives, to quantitative hardware comparison.
+
+The experience is built as a **step wizard** with persistent top navigation. Users can move linearly through the steps or jump to any step via the navigation bar. Each step is a full-viewport scene with its own visual identity.
+
+**Tech Stack:** Next.js 15 + React 19 + TypeScript, Tailwind CSS, shadcn/ui, Framer Motion, HTML5 Canvas (particle effects).
+
+---
+
+## 2. Design Principles
+
+| Principle | Application |
+|-----------|-------------|
+| **Progressive disclosure** | Start with human stories (Nobel laureates), then introduce physics concepts, then technical details |
+| **Cinematic immersion** | Full-viewport scenes, animated transitions, particle backgrounds, generative world-model embeds |
+| **Learn by comparison** | Side-by-side hardware comparison with radar charts makes trade-offs visceral |
+| **No quantum background required** | Plain-language explanations; technical terms always paired with analogies |
+| **Accessibility** | WCAG AA contrast, keyboard navigation, reduced-motion support, semantic HTML |
+
+---
+
+## 3. User Flow
+
+```
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────┐     ┌──────────────┐
+│  1. Nobel Prize │ ──► │ 2. World Models  │ ──► │ 3. Explore  │ ──► │  4. Compare  │
+│    (Landing)    │     │   (Selection)    │     │(Video Play) │     │ (Side-by-Side)│
+└─────────────────┘     └──────────────────┘     └─────────────┘     └──────────────┘
+       ▲                                                         │
+       └─────────────────────────────────────────────────────────┘
+                    (Step indicator persists at top)
+```
+
+**Linear flow:** Users primarily advance via CTAs at the bottom of each step.  
+**Non-linear flow:** The top step indicator allows jumping to any step at any time.  
+**State carry:** Device selection in Step 2 propagates to Steps 3 and 4 (default: Ion Trap).
+
+---
+
+## 4. Step-by-Step Design
+
+### 4.1 Step 1: Nobel Prize (Landing)
+
+**Purpose:** Establish credibility and historical context. Ground the experience in real science before introducing abstract quantum concepts.
+
+**Layout:** Full-viewport dark scene with an animated particle field background.
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  QUANTUM CINEMA                                                     │
+│  [01 Nobel Prize]  [02 World Models]  [03 Explore]  [04 Compare]   │
+│                                                                     │
+│  ───────────────────────────────────────────────────────────────    │
+│                                                                     │
+│  WHERE IT ALL BEGAN                                                 │
+│  2025 Nobel Prize in Physics                                        │
+│  Awarded for pioneering experiments that demonstrated macroscopic   │
+│  quantum tunneling and energy quantization in superconducting       │
+│  circuits — the foundation of today's quantum computers.            │
+│                                                                     │
+│  ┌─────────────┐  ┌──────────────┐  ┌───────────────┐              │
+│  │ John Clarke │  │Michel Devoret│  │John Martinis  │              │
+│  │ UC Berkeley │  │ Yale Univ.   │  │ UC Santa Barb.│              │
+│  │ [photo]     │  │ [photo]      │  │ [photo]       │              │
+│  │ ~bio text~  │  │ ~bio text~   │  │ ~bio text~    │              │
+│  └─────────────┘  └──────────────┘  └───────────────┘              │
+│                                                                     │
+│  [Bridge paragraph: artificial atoms from superconducting circuits] │
+│                                                                     │
+│  THE QUANTUM TIMELINE                                               │
+│  1900 ──► 1927 ──► 1981 ──► 1994 ──► 2019 ──► 2025               │
+│  Planck   Uncert.  Feynman  Shor     Suprem.  Nobel                │
+│                                                                     │
+│  ───────────────────────────────────────────────────────────────    │
+│                                                                     │
+│         SEE THE QUANTUM WORLD THROUGH AI EYES                       │
+│              [ EXPLORE QUANTUM WORLDS ▼ ]                          │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+**Content blocks:**
+
+| Element | Description |
+|---------|-------------|
+| **Header** | "WHERE IT ALL BEGAN" label, "2025 Nobel Prize in Physics" heading with highlighted keyword, descriptive paragraph |
+| **Laureate Cards** | 3 cards: John Clarke (cyan accent), Michel Devoret (purple accent), John Martinis (amber accent). Each has photo, affiliation, one-line contribution, and 2-3 sentence bio |
+| **Bridge Paragraph** | Explains the connection: their work made it possible to engineer artificial atoms from superconducting circuits — the bridge between quantum theory and quantum technology |
+| **Timeline** | Horizontal scrollable (on mobile) or static (desktop) timeline: 1900, 1927, 1981, 1994, 2019, 2025. Each node: year + event title + one-line description |
+| **CTA** | "EXPLORE QUANTUM WORLDS" — scrolls to Step 2 |
+
+**Visual spec:**
+- Background: Animated particle field with amber/cyan glow (colors shift per step)
+- Cards: Glassmorphic effect (`backdrop-blur`, semi-transparent bg), hover lift animation
+- Timeline: Dotted connector line with gradient nodes
+
+---
+
+### 4.2 Step 2: World Models (Selection)
+
+**Purpose:** Introduce the three quantum architectures through generative world-model previews. Users select one to explore in depth.
+
+**Layout:** Dark scene with generative world embeds and entanglement explainer.
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  QUANTUM CINEMA                                                     │
+│  [01 Nobel Prize]  [02 World Models]  [03 Explore]  [04 Compare]   │
+│                                                                     │
+│  ───────────────────────────────────────────────────────────────    │
+│                                                                     │
+│  GENERATIVE WORLD MODELS                                            │
+│  Quantum Worlds Dreamed by AI                                       │
+│  [Intro paragraph about entanglement and AI generation]             │
+│                                                                     │
+│  THE QUANTUM CONNECTION                                             │
+│  What is Quantum Entanglement?                                      │
+│  [3-column comparison: how each architecture creates entanglement]  │
+│                                                                     │
+│  ┌─────────────────────┐ ┌─────────────────────┐ ┌────────────────┐ │
+│  │ Light Suspension    │ │ Frozen Forge        │ │ Wave Garden    │ │
+│  │ IonQ Aria           │ │ Rigetti Ankaa-3     │ │ QuEra Aquila   │ │
+│  │                     │ │                     │ │                │ │
+│  │ [WorldLabs embed]   │ │ [WorldLabs embed]   │ │ [WorldLabs embed]│ │
+│  │                     │ │                     │ │                │ │
+│  │ coherence  ~1-10s   │ │ coherence  ~20-100µs│ │coherence ~1-10µs│ │
+│  │ fidelity   99.5%+   │ │ fidelity   99.0%+   │ │fidelity ~97-99% │ │
+│  │ qubits     25       │ │ qubits     84       │ │qubits    256    │ │
+│  │                     │ │                     │ │                │ │
+│  │ [EXPLORE THIS WORLD]│ │ [EXPLORE THIS WORLD]│ │[EXPLORE WORLD] │ │
+│  └─────────────────────┘ └─────────────────────┘ └────────────────┘ │
+│                                                                     │
+│  SELECT A QUANTUM WORLD ABOVE TO SEE ENTANGLEMENT IN ACTION         │
+│                                                                     │
+│  ───────────────────────────────────────────────────────────────    │
+│  [ BACK ]                                                           │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+**Content blocks:**
+
+| Element | Description |
+|---------|-------------|
+| **Header** | "GENERATIVE WORLD MODELS" label, "Quantum Worlds Dreamed by AI" heading with "predicted" and "entanglement" highlighted |
+| **Entanglement Explainer** | "THE QUANTUM CONNECTION" section. Defines entanglement in plain language, then shows how each of the 3 architectures achieves it differently: IonQ (shared chain motion), Rigetti (local chip couplers), QuEra (spatial Rydberg interactions) |
+| **World Cards** | 3 cards with embedded WorldLabs generative world iframes. Each card: world name, device name, architecture type, key metrics (coherence, fidelity, qubits), "EXPLORE THIS WORLD" button |
+
+**World embeds:**
+| World | Device | Architecture | Embed URL |
+|-------|--------|--------------|-----------|
+| Light Suspension | IonQ Aria | Trapped-Ion | `marble.worldlabs.ai/world/7f7dcf51...` |
+| Frozen Forge | Rigetti Ankaa-3 | Superconducting | `marble.worldlabs.ai/world/cfbff551...` |
+| Wave Garden | QuEra Aquila | Neutral-Atom | `marble.worldlabs.ai/world/4d4ec5be...` |
+
+**Selection behavior:** Clicking "EXPLORE THIS WORLD" sets the selected device and advances to Step 3.
+
+**Visual spec:**
+- World cards: purple border/glow (matching step color), hover scale animation
+- Embedded worlds: Interactive 3D generative scenes from WorldLabs
+- Background: Particle field with cyan/purple glow
+
+---
+
+### 4.3 Step 3: Explore (Video Deep-Dive)
+
+**Purpose:** Provide a cinematic video documentary for each quantum architecture, with detailed entanglement explanations and technical metrics.
+
+**Layout:** Dark scene with a large video player, device selector tabs, and contextual information panels.
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  QUANTUM CINEMA                                                     │
+│  [01 Nobel Prize]  [02 World Models]  [03 Explore]  [04 Compare]   │
+│                                                                     │
+│  ───────────────────────────────────────────────────────────────    │
+│                                                                     │
+│  [▶ Video Player — full width, ~60vh height]                        │
+│                                                                     │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │  [Ion Trap]  [Superconducting]  [Neutral Atoms]            │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                                                                     │
+│  ═══════════════════════════════════════════════════════════════    │
+│                                                                     │
+│  Light Suspension — IonQ Aria — Trapped-Ion Architecture            │
+│                                                                     │
+│  [Metrics row]    [Entanglement box]                                │
+│  coherence ~1-10s         SHARED CHAIN MOTION                       │
+│  fidelity  99.5%+        Ions entangle through collective...        │
+│  qubits    25                                                       │
+│                                                                     │
+│  Ytterbium ions levitated in vacuum and manipulated by lasers...    │
+│                                                                     │
+│  ───────────────────────────────────────────────────────────────    │
+│  [ BACK ]                      [ COMPARE HARDWARE ► ]               │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+**Content blocks:**
+
+| Element | Description |
+|---------|-------------|
+| **Video Player** | Full-width HTML5 `<video>` player. Autoplay muted loop. Sources: `/videos/ion-trap.mp4`, `/videos/superconducting.mp4`, `/videos/neutral-atoms.mp4`. 1080p MP4, ~5-15 seconds, seamless loop |
+| **Device Tabs** | Three tabs: "Ion Trap", "Superconducting", "Neutral Atoms". Switching tabs changes the video, metrics, and description |
+| **World Title** | Format: `{World Name} — {Device Name} — {Architecture Type}` |
+| **Metrics** | Three key-value pairs: coherence time, gate fidelity, qubit count. Values match AWS Braket device calibration data |
+| **Entanglement Method** | Badge + headline (e.g., "SHARED CHAIN MOTION") + 2-3 sentence explanation of how this architecture creates entanglement |
+| **Description** | One paragraph describing the physical setup (e.g., "Ytterbium ions levitated in vacuum and manipulated by lasers...") |
+| **CTAs** | BACK → Step 2; COMPARE HARDWARE → Step 4 |
+
+**Video content by device:**
+
+| Device | Video File | World Name | Key Visual Theme |
+|--------|-----------|------------|------------------|
+| IonQ Aria | `ion-trap.mp4` | Light Suspension | Glowing ions suspended in laser light, harmonic motion |
+| Rigetti Ankaa-3 | `superconducting.mp4` | Frozen Forge | Golden circuitry in frost, rapid energy pulses |
+| QuEra Aquila | `neutral-atoms.mp4` | Wave Garden | Optical tweezer arrays, wave interference patterns |
+
+**Visual spec:**
+- Background: Particle field with cyan glow
+- Video: Rounded corners, subtle border glow matching device accent color
+- Tabs: Underline-style active indicator, color-matched to device
+
+---
+
+### 4.4 Step 4: Compare (Side-by-Side)
+
+**Purpose:** Enable quantitative comparison of all three quantum architectures via radar charts, detailed specifications, and use-case matching.
+
+**Layout:** Dark scene with radar chart visualization, device tabs, and comparison tables.
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  QUANTUM CINEMA                                                     │
+│  [01 Nobel Prize]  [02 World Models]  [03 Explore]  [04 Compare]   │
+│                                                                     │
+│  ───────────────────────────────────────────────────────────────    │
+│                                                                     │
+│  QUANTUM HARDWARE COMPARISON                                        │
+│  Compare Architectures Across Key Metrics                           │
+│                                                                     │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │         [Radar Chart — 6 axes, 3 devices overlaid]         │   │
+│  │  Coherence ◄────────────────────────► Scale                │   │
+│  │     ▲                                    ▲                 │   │
+│  │      ╲    IonQ (purple)                 /                  │   │
+│  │       ╲   Rigetti (amber)              /                   │   │
+│  │        ╲  QuEra (cyan)                /                    │   │
+│  │         ╲                            /                     │   │
+│  │  2Q Fidelity ◄──────────────────► Connectivity            │   │
+│  │                          Readout ◄────► Error Rate         │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                                                                     │
+│  [IonQ Aria]  [Rigetti Ankaa-3]  [QuEra Aquila]                    │
+│                                                                     │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │ SPECIFICATIONS            │ BEST FOR                        │   │
+│  │ ──────────────────────────│─────────────────────────────────│   │
+│  │ Coherence Time: ~1-10s    │ Drug Discovery                  │   │
+│  │ 2-Qubit Fidelity: 99.5%+  │ (High fidelity prevents errors  │   │
+│  │ Readout Fidelity: ~99.7%  │  in molecular simulation)       │   │
+│  │ Error Rate: ~0.5%         │                                 │   │
+│  │ Connectivity: Full        │                                 │   │
+│  │ Qubits: 25                │                                 │   │
+│  │ Critical Limitation:      │                                 │   │
+│  │ Extremely slow gates      │                                 │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                                                                     │
+│  ═══════════════════════════════════════════════════════════════    │
+│  MATCHING HARDWARE TO APPLICATIONS                                  │
+│                                                                     │
+│  ┌────────────────┬──────────────────┬──────────────────────────┐  │
+│  │ Application    │ Best Device      │ Why                      │  │
+│  ├────────────────┼──────────────────┼──────────────────────────┤  │
+│  │ Drug Discovery │ IonQ Aria        │ High fidelity for sim... │  │
+│  │ Grid Optim.    │ Rigetti Ankaa-3  │ Fast gates for iterat... │  │
+│  │ Carbon Capture │ QuEra Aquila     │ Native analog simula...  │  │
+│  └────────────────┴──────────────────┴──────────────────────────┘  │
+│                                                                     │
+│  ───────────────────────────────────────────────────────────────    │
+│  [ BACK ]                                                           │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+**Content blocks:**
+
+| Element | Description |
+|---------|-------------|
+| **Header** | "QUANTUM HARDWARE COMPARISON" label, "Compare Architectures Across Key Metrics" heading |
+| **Radar Chart** | Canvas/SVG-based 6-axis radar chart. Axes: Coherence, 2Q Fidelity, Readout, Error Rate (inverted), Connectivity, Scale. All three devices overlaid with their accent colors. Normalized 0-100 scale |
+| **Device Tabs** | Three tabs to select which device's detailed specs to display |
+| **Specifications Panel** | Key-value table: Coherence Time, 2-Qubit Fidelity, Readout Fidelity, Error Rate, Connectivity, Qubit Count, Critical Limitation |
+| **Best For Panel** | Application domain (Drug Discovery, Grid Optimization, Carbon Capture) with explanation |
+| **Applications Table** | 3-row table: Application → Best Device → Rationale. Shows which hardware matches which real-world use case |
+| **CTA** | BACK → Step 3 |
+
+**Radar chart axes (normalized 0-100):**
+
+| Axis | IonQ Aria | Rigetti Ankaa-3 | QuEra Aquila |
+|------|-----------|-----------------|--------------|
+| Coherence | 95 | 25 | 15 |
+| 2Q Fidelity | 90 | 80 | 65 |
+| Readout | 95 | 70 | 50 |
+| Error Rate (inverted) | 85 | 70 | 55 |
+| Connectivity | 95 | 30 | 60 |
+| Scale | 12 | 45 | 80 |
+
+**Visual spec:**
+- Background: Particle field with amber glow
+- Radar chart: Semi-transparent filled regions, device-colored strokes
+- Cards: Glassmorphic, hover states on table rows
+
+---
+
+## 5. Global UI Elements
+
+### 5.1 Step Indicator (Persistent Navigation)
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  QUANTUM CINEMA                                                  │
+│  [01 Nobel Prize]  [02 World Models]  [03 Explore]  [04 Compare] │
+│  1 / 4                                        [◄] [►]           │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+- **Position:** Fixed top, full width, z-index above all content
+- **Layout:** Brand name left, 4 numbered step buttons center, page indicator right
+- **Active state:** Current step button highlighted with accent color underline
+- **Interaction:** Click any step button to jump directly to that step. Smooth scroll to top on step change.
+- **Step counter:** Shows "N / 4" with prev/next arrow buttons
+
+### 5.2 Particle Field Background
+
+- **Technology:** HTML5 Canvas with animated particles
+- **Behavior:** Particles drift slowly, connect with lines when near each other, pulse gently
+- **Color:** Shifts per step (amber → purple → cyan → amber)
+- **Count:** ~30 particles (performance-optimized)
+- **Reduced motion:** Static particles with no animation when `prefers-reduced-motion` is set
+
+### 5.3 Theme System
+
+- **Default:** Dark mode (deep navy/black background)
+- **Toggle:** Light/dark switch in the top-right corner
+- **Colors:** CSS custom properties for all theme values; Tailwind `dark:` variants throughout
+
+---
+
+## 6. Visual System
+
+### 6.1 Color Palette
+
+```
+Background:    #000000 (pure black) or #0a0a0f (deep navy)
+Surface:       rgba(255,255,255,0.03) — glassmorphic card bg
+Border:        rgba(255,255,255,0.08) — card borders
+Text Primary:  #ffffff
+Text Secondary: rgba(255,255,255,0.6)
+Accent Amber:  #f59e0b — Nobel Prize / Compare step
+Accent Purple: #a855f7 — World Models step
+Accent Cyan:   #00f0ff — Explore step
+```
+
+**Device accent colors (consistent across all steps):**
+| Device | Color | RGB | Usage |
+|--------|-------|-----|-------|
+| IonQ Aria | Purple | `168, 85, 247` | Cards, borders, glows, radar fill |
+| Rigetti Ankaa-3 | Amber | `245, 158, 11` | Cards, borders, glows, radar fill |
+| QuEra Aquila | Cyan | `0, 240, 255` | Cards, borders, glows, radar fill |
+
+### 6.2 Typography
+
+- **Heading font:** System sans-serif (Geist via Next.js font optimization)
+- **H1:** 48px / font-weight 300 / letter-spacing -0.02em
+- **H2:** 32px / font-weight 400 / letter-spacing -0.01em
+- **H3:** 24px / font-weight 500
+- **Body:** 16px / font-weight 400 / line-height 1.6
+- **Caption/Label:** 12px / font-weight 500 / uppercase / letter-spacing 0.08em
+- **Monospace (metrics):** `font-mono` for coherence times, fidelity percentages, qubit counts
+
+### 6.3 Spacing & Layout
+
+- **Container:** max-width 1200px, centered, px-4 on mobile, px-8 on desktop
+- **Section padding:** py-24 (96px) between major content blocks
+- **Card padding:** p-6 (24px)
+- **Card border-radius:** rounded-2xl (16px)
+- **Card border:** 1px solid `rgba(255,255,255,0.08)`
+- **Grid:** 3-column on desktop (`grid-cols-3`), 1-column on mobile
+
+### 6.4 Animation Specs
+
+| Animation | Duration | Easing | Trigger |
+|-----------|----------|--------|---------|
+| Step transition (enter) | 0.4s | `cubic-bezier(0.16, 1, 0.3, 1)` | Step change (AnimatePresence) |
+| Step transition (exit) | 0.2s | `ease-in` | Step change |
+| Card hover lift | 0.3s | `ease-out` | Mouse enter |
+| Particle drift | continuous | linear | Always (canvas loop) |
+| Tab underline | 0.2s | `ease-out` | Tab switch |
+| Button press | 0.1s | `ease-out` | Click/tap |
+| Scroll fade-in | 0.5s | `ease-out` | IntersectionObserver |
+
+---
+
+## 7. Component Architecture
+
+```
+app/
+├── page.tsx              # Main orchestrator: step state, device state, layout
+├── layout.tsx            # Root layout: fonts, metadata, theme provider
+├── globals.css           # Tailwind imports, CSS custom properties, animations
+└── favicon.ico
+
+components/
+├── ParticleField.tsx      # Canvas particle background (step-colored, count prop)
+├── RadarChart.tsx         # SVG radar chart for comparison (6 axes, multi-series)
+├── StepIndicator.tsx      # Top navigation bar (currentStep, onStepClick)
+├── ThemeProvider.tsx      # Dark/light context provider
+├── ThemeToggle.tsx        # Theme switch button
+├── steps/
+│   ├── NobelPrizeStep.tsx      # Step 0: laureates, timeline, CTA
+│   ├── WorldModelStep.tsx      # Step 1: world selection, entanglement explainer
+│   ├── VideoShowcaseStep.tsx   # Step 2: video player, device tabs, metrics
+│   └── ComparisonStep.tsx      # Step 3: radar chart, specs, applications table
+└── ui/                    # shadcn/ui components (Button, Card, Badge, Tabs, etc.)
+```
+
+**State management (React useState in page.tsx):**
+```typescript
+const [currentStep, setCurrentStep] = useState(0);        // 0-3
+const [selectedDevice, setSelectedDevice] = useState<DeviceId>("ion-trap");
+// DeviceId = "ion-trap" | "superconducting" | "neutral-atoms"
+```
+
+**Step → Component mapping:**
+| Step Index | Step Name | Component |
+|------------|-----------|-----------|
+| 0 | Nobel Prize | `NobelPrizeStep` |
+| 1 | World Models | `WorldModelStep` |
+| 2 | Explore | `VideoShowcaseStep` |
+| 3 | Compare | `ComparisonStep` |
+
+---
+
+## 8. Data Model
+
+### 8.1 Device Configuration
+
+```typescript
+type DeviceId = "ion-trap" | "superconducting" | "neutral-atoms";
+
+interface DeviceConfig {
+  name: string;              // e.g., "IonQ Aria"
+  worldName: string;         // e.g., "Light Suspension"
+  url: string;               // WorldLabs embed URL
+  color: string;             // Hex accent color
+  rgb: string;               // RGB values for CSS
+  videoSrc: string;          // e.g., "/videos/ion-trap.mp4"
+  subtitle: string;          // e.g., "Trapped-Ion Architecture"
+  description: string;       // 1-2 sentence physical setup
+  metrics: {
+    coherence: string;       // e.g., "~1-10 s"
+    fidelity: string;        // e.g., "99.5%+"
+    qubits: string;          // e.g., "25"
+  };
+  entanglement: {
+    method: string;          // e.g., "Shared Chain Motion"
+    summary: string;         // 2-3 sentence explanation
+  };
+  radarScores: {
+    coherence: number;       // 0-100 normalized
+    twoQFidelity: number;
+    readout: number;
+    errorRate: number;       // inverted (higher = lower error)
+    connectivity: number;
+    scale: number;
+  };
+  details: {
+    coherenceTime: string;
+    twoQubitFidelity: string;
+    readoutFidelity: string;
+    errorRate: string;
+    connectivity: string;
+    qubits: string;
+  };
+  limitation: string;        // One-line critical limitation
+  bestFor: string;           // Application domain
+  bestForDetail: string;     // Why this device fits
+}
+```
+
+### 8.2 Step Content Configuration
+
+All step content is defined as **static data constants** at the top of each step component file. No CMS or API calls are required at runtime. All content is bundled at build time.
+
+---
+
+## 9. Asset Inventory
+
+### 9.1 Videos
+
+| File | Device | Format | Notes |
+|------|--------|--------|-------|
+| `/videos/ion-trap.mp4` | IonQ Aria | MP4, H.264, 1080p | ~5-15s, seamless loop |
+| `/videos/superconducting.mp4` | Rigetti Ankaa-3 | MP4, H.264, 1080p | ~5-15s, seamless loop |
+| `/videos/neutral-atoms.mp4` | QuEra Aquila | MP4, H.264, 1080p | ~5-15s, seamless loop |
+
+### 9.2 Images
+
+| File | Usage | Format |
+|------|-------|--------|
+| `/laureates/clarke.jpg` | John Clarke portrait | JPG |
+| `/laureates/devoret.webp` | Michel Devoret portrait | WebP |
+| `/laureates/martinis.jpg` | John Martinis portrait | JPG |
+
+### 9.3 World Embeds
+
+Three interactive 3D generative world scenes embedded via `<iframe>` from WorldLabs Marble platform. These are the primary visual content for the World Models step.
+
+---
+
+## 10. Interaction Design
+
+### 10.1 Step Navigation
+
+| Action | Behavior |
+|--------|----------|
+| Click step indicator button | Jump to that step (smooth scroll to top) |
+| Click "EXPLORE QUANTUM WORLDS" | Advance to Step 1 |
+| Click "EXPLORE THIS WORLD" | Set selected device, advance to Step 2 |
+| Click "BACK" | Return to previous step |
+| Click "COMPARE HARDWARE" | Advance to Step 3 |
+| Prev/Next arrows in step indicator | Increment/decrement step |
+
+### 10.2 Device Selection Flow
+
+```
+Step 1 (World Models) → select device → Step 2 (Explore) shows selected device
+                                              ↓
+Step 3 (Compare) → can switch device via tabs ←┘
+```
+
+The selected device from Step 1 becomes the default active tab in Steps 2 and 3.
+
+### 10.3 Responsive Behavior
+
+| Breakpoint | Layout Changes |
+|------------|----------------|
+| Desktop (≥1024px) | 3-column card grids, side-by-side comparison panels, full radar chart |
+| Tablet (768-1023px) | 2-column where appropriate, stacked comparison panels |
+| Mobile (<768px) | Single column, scrollable timeline, stacked tabs, reduced particle count |
+
+---
+
+## 11. Accessibility Requirements
+
+- **Keyboard navigation:** All interactive elements focusable, Tab order follows visual flow
+- **Screen readers:** Semantic headings (`<h1>`-`<h3>`), ARIA labels on tabs and buttons, `aria-current` for active step
+- **Reduced motion:** `@media (prefers-reduced-motion: reduce)` disables particle animation and entrance transitions
+- **Color contrast:** All text meets WCAG AA (4.5:1 for body, 3:1 for large text)
+- **Video:** Videos are decorative (no audio track required); `aria-hidden` on canvas particle layer
+
+---
+
+## 12. Performance Budget
+
+| Metric | Target |
+|--------|--------|
+| First Contentful Paint | < 1.5s |
+| Largest Contentful Paint | < 2.5s |
+| Time to Interactive | < 3.5s |
+| Total JS bundle (gzipped) | < 200KB |
+| Video preload | `preload="metadata"` on page load; full preload on step 2 enter |
+| Particle field | 30 particles max; 60fps on mid-range devices |
+
+---
+
+*This document describes the shipped implementation as of June 2026. For architecture and infrastructure details (AWS CDK, Docker, CI/CD), see `README.md` and `SUPPLEMENTARY.md` in the repository root.*
