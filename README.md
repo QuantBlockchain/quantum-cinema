@@ -24,6 +24,7 @@
   <a href="#features">Features</a> ·
   <a href="#architecture">Architecture</a> ·
   <a href="#world-models-documentation">World Models</a> ·
+  <a href="#device-data-references">Device Data</a> ·
   <a href="#quick-start">Quick Start</a> ·
   <a href="#reproducibility">Reproducibility</a> ·
   <a href="#supplementary-material">Supplementary material</a> ·
@@ -298,7 +299,7 @@ The experience is built as a single-page **Next.js 16 / React 19** application, 
 |---|---|
 | 🎞️ **Four-act cinematic flow** | Nobel Prize → World Models → Explore → Compare, with animated step transitions |
 | 🌌 **AI-dreamed device worlds** | Trapped-ion, superconducting, and neutral-atom architectures as explorable generative 3D scenes |
-| 📊 **Real device data** | Coherence time, gate fidelity, connectivity, error rate, qubit count — sourced from actual AWS Braket hardware |
+| 📊 **Real device data** | Coherence time, two-qubit gate fidelity, readout fidelity, error rate, connectivity, qubit count — sourced from actual AWS Braket hardware |
 | 🕹️ **Interactive radar comparison** | Normalized 0–100 scoring across six axes with a live radar chart |
 | ✨ **Particle field + quantum grid** | Per-step accent colours, animated particle backdrop, scan-line and shimmer effects |
 | 🌗 **Dark / light theme** | Cinematic dark default with a one-tap toggle; no-flash, preference persisted |
@@ -389,15 +390,52 @@ Neutral atoms arranged by optical tweezers at *room temperature* into programmab
 <br>
 
 - **Coherence Time** — how long a qubit stays "quantum" before noise destroys its superposition. Short coherence = the simulation crashes before it finds the answer.
-- **Gate Fidelity** — accuracy of each operation. 99.9% means 1 error per 1,000 operations; errors accumulate into nonsense.
+- **Two-Qubit Gate Fidelity** — accuracy of the entangling operation between two qubits. 99.9% means 1 error per 1,000 operations; errors accumulate into nonsense. For the analog device (QuEra), this is reported as the platform-native, sequence-level equivalent, since Hamiltonian-simulation hardware has no discrete two-qubit gates.
+- **Readout Fidelity** — accuracy of measuring a qubit's final state. Faulty readout corrupts the answer even when the computation was correct.
+- **Error Rate** — frequency of random operation errors. Above ~1%, you need error correction that can demand 1,000+ physical qubits per usable logical qubit.
 - **Connectivity** — how many other qubits each qubit can directly "talk to." Limited connectivity forces slow, wasteful workarounds.
-- **Error Rate** — frequency of random bit-flips. Above ~1%, you need error correction that can demand 1,000+ physical qubits per usable logical qubit.
-- **Energy Cost** — power to maintain the quantum state (lasers for ions, cryogenics for superconductors). The machine's own carbon footprint must be offset by its gains.
 - **Qubit Count** — raw scale, which only matters when paired with the five qualities above.
 
-The core lesson of the Comparison act: **you cannot optimize all six at once.** Every architecture trades some away to win others — and that trade-off is exactly why "which quantum computer is best?" is the wrong question.
+The core lesson of the Comparison act: **you cannot optimize all six at once.** Every architecture trades some away to win others — and that trade-off is exactly why "which quantum computer is best?" is the wrong question. Because gate fidelity is undefined for analog hardware, the comparison **groups devices by computational paradigm** — gate-based (IonQ, Rigetti) versus analog Hamiltonian simulation (QuEra) — rather than scoring all three on one yardstick.
 
 </details>
+
+---
+
+<a id="device-data-references"></a>
+## 📑 Device Data & References
+
+> Every number shown in the app and paper (Table IV, Fig. 5 / Fig. 8, and Appendices H–J) is driven from a single canonical source, [`quantum-cinema/src/lib/data.ts`](quantum-cinema/src/lib/data.ts), so the values cannot drift between the main text, the appendix, and the deployed comparison dashboard.
+
+### Data provenance
+
+All device parameters are curated from **published manufacturer specifications** and the **AWS Braket** service documentation — no proprietary datasets are used.
+
+| Ref | Source | Used for |
+|---|---|---|
+| **[28]** | [Amazon Web Services, "AWS Braket: Quantum computing service"](https://aws.amazon.com/braket) | Device availability and curated metric snapshots for all three architectures |
+| **[29]** | [IonQ, "IonQ Forte: Trapped-ion quantum computer specifications"](https://ionq.com) | IonQ Aria — coherence, two-qubit gate fidelity, all-to-all connectivity, qubit count |
+| **[30]** | [QuEra Computing, "QuEra Aquila: Neutral atom quantum computer"](https://quera.com) | QuEra Aquila — coherence, sequence-level fidelity, programmable geometry, qubit count |
+| **[31]** | [Rigetti Computing, "Rigetti Ankaa-3: Superconducting quantum processor"](https://rigetti.com) | Rigetti Ankaa-3 — coherence, two-qubit gate fidelity, nearest-neighbor connectivity, qubit count |
+| **[32]** | C. D. Bruzewicz, J. Chiaverini, R. McConnell, J. M. Sage, "Trapped-ion quantum computing: Progress and challenges," *Applied Physics Reviews*, vol. 6, no. 2, 021314, 2019 | Trapped-ion physics and metric context |
+| **[33]** | D. Bluvstein et al., "Logical quantum processor based on reconfigurable atom arrays," *Nature*, vol. 626, pp. 58–65, 2024 | Neutral-atom physics; 2024 fidelity improvements |
+| **[34]** | P. Krantz, M. Kjaergaard, F. Yan, T. P. Orlando, S. Gustavsson, W. D. Oliver, "A quantum engineer's guide to superconducting qubits," *Applied Physics Reviews*, vol. 6, no. 2, 021318, 2019 | Superconducting physics and metric context |
+
+### Data points and their references
+
+Values below are the canonical figures from `data.ts` (identical to Appendix H, Table X of the paper). The **two-qubit gate fidelity** for QuEra is a platform-native, sequence-level equivalent — the analog paradigm has no discrete two-qubit gates.
+
+| Metric | 🔮 IonQ Aria (trapped-ion, gate-based) | ⚡ Rigetti Ankaa-3 (superconducting, gate-based) | 🌊 QuEra Aquila (neutral-atom, analog) | Reference(s) |
+|---|---|---|---|---|
+| **Coherence time** | ~1–10 s | ~20–100 µs | ~1–10 µs | [28], [29], [31], [30], [33] |
+| **Two-qubit gate fidelity** | 99.5%+ | 99.0%+ | ~97–99% (sequence-level) | [28], [29], [31], [30], [33] |
+| **Readout fidelity** | ~99.7% | ~97–99% | ~99% (per-atom) | [28], [29], [31], [30] |
+| **Error rate** | ~0.5% | ~1% | ~1–3% | [28], [29], [31], [30] |
+| **Connectivity** | Full (all-to-all) | Limited (nearest-neighbor) | Programmable geometry | [28], [29], [31], [30] |
+| **Qubit count** | 25 | 84 | 256 | [28], [29], [31], [30] |
+| **Operating temperature** | Room (vacuum) | ~10–15 mK | Room (vacuum) | [29], [31], [30] |
+
+> **Radar normalization (Fig. 5 / Fig. 8):** raw values above are mapped to a **0–100** score per axis (Error Rate inverted so that higher = better), grouped by paradigm. The normalization formulas and step-by-step derivations are documented in Appendix I of the paper and implemented in [`quantum-cinema/src/components/steps/ComparisonStep.tsx`](quantum-cinema/src/components/steps/ComparisonStep.tsx).
 
 ---
 
