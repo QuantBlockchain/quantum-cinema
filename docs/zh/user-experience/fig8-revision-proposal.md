@@ -89,7 +89,7 @@ His three examples are all accurate; the list is **incomplete, not wrong** — t
 
 **Minor precision note (optional, not an error):** the *scores* live in Table XI (Appendix **J**); the *formulas* are Appendix **I**. His phrasing "normalizations in Appendix I don't recompute to the scores shown" is accurate as written.
 
-**Out-of-scope but related:** the deployed app (`quantum-cinema/src/lib/data.ts`) lists QuEra coherence as **~1–10 µs**, while both paper tables say **1–10 s**. The proposed single-shared-data-file fix would resolve this too — and `data.ts` is already effectively that canonical source.
+**Related — and it points the other way from a pure consistency read:** the deployed app (`quantum-cinema/src/lib/data.ts`) lists QuEra coherence as **~1–10 µs**, while both paper tables say **1–10 s**. Here the **app is the correct side**: QuEra Aquila is analog (AHS), and its relevant timescale is the Rydberg/analog sequence time on the **µs scale** (`docs/world-models/significance-analysis.md`, Table 1). The paper's "seconds" is the ground-state hyperfine coherence, which is not the timescale the analog device operates on. So the fix is to correct the **paper** (seconds → µs), not the app — see C4. This actually strengthens the single-shared-data-file argument: `data.ts` already holds the more accurate value and the paper drifted away from it.
 
 ## Modification suggestions
 
@@ -110,10 +110,10 @@ Standardize on **Table X / `data.ts`** as the single canonical source (per Dongp
 - **Current:** IonQ All-to-all, QuEra **Nearest + long-range**, Superconducting **Lattice (limited)**.
 - **Change:** IonQ All-to-all, QuEra **Programmable**, Superconducting **Nearest-neighbor** (matches Table X and `data.ts`).
 
-### C4. Table IV — Coherence Time row (align units/precision with Table X)
+### C4. Table IV / Table X — Coherence Time row (physics fix for QuEra, plus main-text precision)
 
-- **Current:** IonQ ~seconds, QuEra ~seconds, Superconducting **~100 µs**.
-- **Change:** IonQ **1–10 s**, QuEra **1–10 s**, Superconducting **20–100 µs** (matches Table X). Also fix the app: `data.ts` QuEra coherence reads **~1–10 µs** and must become **~1–10 s** to agree with both tables.
+- **Current:** IonQ ~seconds, QuEra **~seconds / 1–10 s**, Superconducting **~100 µs**.
+- **Change:** IonQ **1–10 s**, Superconducting **20–100 µs**, and **QuEra 1–10 s → ~1–10 µs**. This is a physics correction, not just a consistency edit: QuEra Aquila is an analog (AHS) device whose relevant timescale is the Rydberg/analog **sequence time (`timeMax`), on the µs scale** — see `docs/world-models/significance-analysis.md` (Table 1, "Sequence time"). The "seconds" figure is the ground-state hyperfine coherence, not the timescale the analog machine actually uses. **The app is already correct** (`data.ts` = `~1–10 µs`); fix the paper's Table IV and Table X to match it — **do not change `data.ts`.**
 
 ### C5. Appendix I / Table XI — normalizations that don't recompute
 
